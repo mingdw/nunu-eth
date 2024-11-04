@@ -4,17 +4,24 @@
 package wire
 
 import (
-	"github.com/go-nunu/nunu-layout-advanced/internal/handler"
-	"github.com/go-nunu/nunu-layout-advanced/internal/repository"
-	"github.com/go-nunu/nunu-layout-advanced/internal/server"
-	"github.com/go-nunu/nunu-layout-advanced/internal/service"
-	"github.com/go-nunu/nunu-layout-advanced/pkg/app"
-	"github.com/go-nunu/nunu-layout-advanced/pkg/jwt"
-	"github.com/go-nunu/nunu-layout-advanced/pkg/log"
-	"github.com/go-nunu/nunu-layout-advanced/pkg/server/http"
-	"github.com/go-nunu/nunu-layout-advanced/pkg/sid"
+	"nunu-eth/internal/handler"
+	"nunu-eth/internal/repository"
+	"nunu-eth/internal/server"
+	"nunu-eth/internal/service"
+	"nunu-eth/pkg/app"
+	"nunu-eth/pkg/jwt"
+	"nunu-eth/pkg/log"
+	"nunu-eth/pkg/server/http"
+	"nunu-eth/pkg/sid"
+
 	"github.com/google/wire"
 	"github.com/spf13/viper"
+)
+
+var handlerSet = wire.NewSet(
+	handler.NewHandler,
+	handler.NewUserHandler,
+	handler.NewCommonHandler,
 )
 
 var repositorySet = wire.NewSet(
@@ -23,16 +30,13 @@ var repositorySet = wire.NewSet(
 	repository.NewRepository,
 	repository.NewTransaction,
 	repository.NewUserRepository,
+	repository.NewCommonRepository,
 )
 
 var serviceSet = wire.NewSet(
 	service.NewService,
 	service.NewUserService,
-)
-
-var handlerSet = wire.NewSet(
-	handler.NewHandler,
-	handler.NewUserHandler,
+	service.NewCommonService,
 )
 
 var serverSet = wire.NewSet(

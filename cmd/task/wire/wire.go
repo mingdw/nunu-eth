@@ -4,9 +4,9 @@
 package wire
 
 import (
-	"github.com/go-nunu/nunu-layout-advanced/internal/server"
-	"github.com/go-nunu/nunu-layout-advanced/pkg/app"
-	"github.com/go-nunu/nunu-layout-advanced/pkg/log"
+	"nunu-eth/internal/server"
+	"nunu-eth/pkg/app"
+	"nunu-eth/pkg/log"
 	"github.com/google/wire"
 	"github.com/spf13/viper"
 )

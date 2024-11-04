@@ -1,4 +1,4 @@
-module github.com/go-nunu/nunu-layout-advanced
+module nunu-eth
 
 go 1.19
 

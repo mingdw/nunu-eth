@@ -2,9 +2,9 @@ package service
 
 import (
 	"context"
-	v1 "github.com/go-nunu/nunu-layout-advanced/api/v1"
-	"github.com/go-nunu/nunu-layout-advanced/internal/model"
-	"github.com/go-nunu/nunu-layout-advanced/internal/repository"
+	v1 "nunu-eth/api/v1"
+	"nunu-eth/internal/model"
+	"nunu-eth/internal/repository"
 	"golang.org/x/crypto/bcrypt"
 	"time"
 )

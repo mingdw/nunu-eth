@@ -3,8 +3,8 @@ package repository
 import (
 	"context"
 	"errors"
-	v1 "github.com/go-nunu/nunu-layout-advanced/api/v1"
-	"github.com/go-nunu/nunu-layout-advanced/internal/model"
+	v1 "nunu-eth/api/v1"
+	"nunu-eth/internal/model"
 	"gorm.io/gorm"
 )
 

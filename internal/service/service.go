@@ -1,10 +1,10 @@
 package service
 
 import (
-	"github.com/go-nunu/nunu-layout-advanced/internal/repository"
-	"github.com/go-nunu/nunu-layout-advanced/pkg/jwt"
-	"github.com/go-nunu/nunu-layout-advanced/pkg/log"
-	"github.com/go-nunu/nunu-layout-advanced/pkg/sid"
+	"nunu-eth/internal/repository"
+	"nunu-eth/pkg/jwt"
+	"nunu-eth/pkg/log"
+	"nunu-eth/pkg/sid"
 )
 
 type Service struct {

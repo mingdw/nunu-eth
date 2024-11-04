@@ -4,10 +4,11 @@
 package wire
 
 import (
-	"github.com/go-nunu/nunu-layout-advanced/internal/repository"
-	"github.com/go-nunu/nunu-layout-advanced/internal/server"
-	"github.com/go-nunu/nunu-layout-advanced/pkg/app"
-	"github.com/go-nunu/nunu-layout-advanced/pkg/log"
+	"nunu-eth/internal/repository"
+	"nunu-eth/internal/server"
+	"nunu-eth/pkg/app"
+	"nunu-eth/pkg/log"
+
 	"github.com/google/wire"
 	"github.com/spf13/viper"
 )
@@ -17,6 +18,7 @@ var repositorySet = wire.NewSet(
 	//repository.NewRedis,
 	repository.NewRepository,
 	repository.NewUserRepository,
+	repository.CommonRepository,
 )
 var serverSet = wire.NewSet(
 	server.NewMigrate,

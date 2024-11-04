@@ -7,17 +7,17 @@
 package wire
 
 import (
-	"github.com/go-nunu/nunu-layout-advanced/internal/handler"
-	"github.com/go-nunu/nunu-layout-advanced/internal/repository"
-	"github.com/go-nunu/nunu-layout-advanced/internal/server"
-	"github.com/go-nunu/nunu-layout-advanced/internal/service"
-	"github.com/go-nunu/nunu-layout-advanced/pkg/app"
-	"github.com/go-nunu/nunu-layout-advanced/pkg/jwt"
-	"github.com/go-nunu/nunu-layout-advanced/pkg/log"
-	"github.com/go-nunu/nunu-layout-advanced/pkg/server/http"
-	"github.com/go-nunu/nunu-layout-advanced/pkg/sid"
 	"github.com/google/wire"
 	"github.com/spf13/viper"
+	"nunu-eth/internal/handler"
+	"nunu-eth/internal/repository"
+	"nunu-eth/internal/server"
+	"nunu-eth/internal/service"
+	"nunu-eth/pkg/app"
+	"nunu-eth/pkg/jwt"
+	"nunu-eth/pkg/log"
+	"nunu-eth/pkg/server/http"
+	"nunu-eth/pkg/sid"
 )
 
 // Injectors from wire.go:
@@ -33,7 +33,10 @@ func NewWire(viperViper *viper.Viper, logger *log.Logger) (*app.App, func(), err
 	userRepository := repository.NewUserRepository(repositoryRepository)
 	userService := service.NewUserService(serviceService, userRepository)
 	userHandler := handler.NewUserHandler(handlerHandler, userService)
-	httpServer := server.NewHTTPServer(logger, viperViper, jwtJWT, userHandler)
+	commonRepository := repository.NewCommonRepository(repositoryRepository)
+	commonService := service.NewCommonService(serviceService, commonRepository)
+	commonHandler := handler.NewCommonHandler(handlerHandler, commonService)
+	httpServer := server.NewHTTPServer(logger, viperViper, jwtJWT, userHandler, commonHandler)
 	job := server.NewJob(logger)
 	appApp := newApp(httpServer, job)
 	return appApp, func() {
@@ -42,11 +45,11 @@ func NewWire(viperViper *viper.Viper, logger *log.Logger) (*app.App, func(), err
 
 // wire.go:
 
-var repositorySet = wire.NewSet(repository.NewDB, repository.NewRepository, repository.NewTransaction, repository.NewUserRepository)
+var handlerSet = wire.NewSet(handler.NewHandler, handler.NewUserHandler, handler.NewCommonHandler)
 
-var serviceSet = wire.NewSet(service.NewService, service.NewUserService)
+var repositorySet = wire.NewSet(repository.NewDB, repository.NewRepository, repository.NewTransaction, repository.NewUserRepository, repository.NewCommonRepository)
 
-var handlerSet = wire.NewSet(handler.NewHandler, handler.NewUserHandler)
+var serviceSet = wire.NewSet(service.NewService, service.NewUserService, service.NewCommonService)
 
 var serverSet = wire.NewSet(server.NewHTTPServer, server.NewJob)
 

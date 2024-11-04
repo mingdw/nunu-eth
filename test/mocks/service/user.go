@@ -8,7 +8,7 @@ import (
 	context "context"
 	reflect "reflect"
 
-	v1 "github.com/go-nunu/nunu-layout-advanced/api/v1"
+	v1 "nunu-eth/api/v1"
 	gomock "github.com/golang/mock/gomock"
 )
 

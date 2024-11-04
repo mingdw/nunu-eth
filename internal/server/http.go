@@ -1,14 +1,15 @@
 package server
 
 import (
+	apiV1 "nunu-eth/api/v1"
+	"nunu-eth/docs"
+	"nunu-eth/internal/handler"
+	"nunu-eth/internal/middleware"
+	"nunu-eth/pkg/jwt"
+	"nunu-eth/pkg/log"
+	"nunu-eth/pkg/server/http"
+
 	"github.com/gin-gonic/gin"
-	apiV1 "github.com/go-nunu/nunu-layout-advanced/api/v1"
-	"github.com/go-nunu/nunu-layout-advanced/docs"
-	"github.com/go-nunu/nunu-layout-advanced/internal/handler"
-	"github.com/go-nunu/nunu-layout-advanced/internal/middleware"
-	"github.com/go-nunu/nunu-layout-advanced/pkg/jwt"
-	"github.com/go-nunu/nunu-layout-advanced/pkg/log"
-	"github.com/go-nunu/nunu-layout-advanced/pkg/server/http"
 	"github.com/spf13/viper"
 	swaggerfiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
@@ -19,6 +20,7 @@ func NewHTTPServer(
 	conf *viper.Viper,
 	jwt *jwt.JWT,
 	userHandler *handler.UserHandler,
+	commonHandler *handler.CommonHandler,
 ) *http.Server {
 	gin.SetMode(gin.DebugMode)
 	s := http.NewServer(
@@ -57,6 +59,7 @@ func NewHTTPServer(
 		{
 			noAuthRouter.POST("/register", userHandler.Register)
 			noAuthRouter.POST("/login", userHandler.Login)
+			noAuthRouter.GET("/common", commonHandler.Test)
 		}
 		// Non-strict permission routing group
 		noStrictAuthRouter := v1.Group("/").Use(middleware.NoStrictAuth(jwt, logger))
@@ -69,6 +72,7 @@ func NewHTTPServer(
 		{
 			strictAuthRouter.PUT("/user", userHandler.UpdateProfile)
 		}
+
 	}
 
 	return s

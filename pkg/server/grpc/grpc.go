@@ -3,7 +3,7 @@ package grpc
 import (
 	"context"
 	"fmt"
-	"github.com/go-nunu/nunu-layout-advanced/pkg/log"
+	"nunu-eth/pkg/log"
 	"google.golang.org/grpc"
 	"net"
 	"time"

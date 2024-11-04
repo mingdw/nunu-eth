@@ -1,10 +1,10 @@
 package handler
 
 import (
-	v1 "github.com/go-nunu/nunu-layout-advanced/api/v1"
-	"github.com/go-nunu/nunu-layout-advanced/internal/handler"
-	"github.com/go-nunu/nunu-layout-advanced/internal/middleware"
-	"github.com/go-nunu/nunu-layout-advanced/test/mocks/service"
+	v1 "nunu-eth/api/v1"
+	"nunu-eth/internal/handler"
+	"nunu-eth/internal/middleware"
+	"nunu-eth/test/mocks/service"
 	"net/http"
 	"testing"
 

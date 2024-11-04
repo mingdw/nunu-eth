@@ -3,7 +3,7 @@ package server
 import (
 	"context"
 	"github.com/go-co-op/gocron"
-	"github.com/go-nunu/nunu-layout-advanced/pkg/log"
+	"nunu-eth/pkg/log"
 	"go.uber.org/zap"
 	"time"
 )

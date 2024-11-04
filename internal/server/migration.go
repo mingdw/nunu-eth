@@ -2,8 +2,8 @@ package server
 
 import (
 	"context"
-	"github.com/go-nunu/nunu-layout-advanced/internal/model"
-	"github.com/go-nunu/nunu-layout-advanced/pkg/log"
+	"nunu-eth/internal/model"
+	"nunu-eth/pkg/log"
 	"go.uber.org/zap"
 	"gorm.io/gorm"
 	"os"

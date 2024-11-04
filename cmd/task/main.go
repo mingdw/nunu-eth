@@ -3,9 +3,9 @@ package main
 import (
 	"context"
 	"flag"
-	"github.com/go-nunu/nunu-layout-advanced/cmd/task/wire"
-	"github.com/go-nunu/nunu-layout-advanced/pkg/config"
-	"github.com/go-nunu/nunu-layout-advanced/pkg/log"
+	"nunu-eth/cmd/task/wire"
+	"nunu-eth/pkg/config"
+	"nunu-eth/pkg/log"
 )
 
 func main() {

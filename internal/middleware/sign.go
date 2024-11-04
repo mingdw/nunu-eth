@@ -3,8 +3,8 @@ package middleware
 import (
 	"github.com/duke-git/lancet/v2/cryptor"
 	"github.com/gin-gonic/gin"
-	v1 "github.com/go-nunu/nunu-layout-advanced/api/v1"
-	"github.com/go-nunu/nunu-layout-advanced/pkg/log"
+	v1 "nunu-eth/api/v1"
+	"nunu-eth/pkg/log"
 	"github.com/spf13/viper"
 	"net/http"
 	"sort"

@@ -2,7 +2,7 @@ package app
 
 import (
 	"context"
-	"github.com/go-nunu/nunu-layout-advanced/pkg/server"
+	"nunu-eth/pkg/server"
 	"log"
 	"os"
 	"os/signal"

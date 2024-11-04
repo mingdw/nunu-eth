@@ -2,13 +2,13 @@ package repository
 
 import (
 	"context"
-	"github.com/go-nunu/nunu-layout-advanced/pkg/log"
+	"nunu-eth/pkg/log"
 	"testing"
 	"time"
 
 	"github.com/DATA-DOG/go-sqlmock"
-	"github.com/go-nunu/nunu-layout-advanced/internal/model"
-	"github.com/go-nunu/nunu-layout-advanced/internal/repository"
+	"nunu-eth/internal/model"
+	"nunu-eth/internal/repository"
 	"github.com/stretchr/testify/assert"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
