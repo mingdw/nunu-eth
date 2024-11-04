@@ -1,6 +1,8 @@
 package server
 
 import (
+	"html/template"
+	"io/fs"
 	apiV1 "nunu-eth/api/v1"
 	"nunu-eth/docs"
 	"nunu-eth/internal/handler"
@@ -8,6 +10,7 @@ import (
 	"nunu-eth/pkg/jwt"
 	"nunu-eth/pkg/log"
 	"nunu-eth/pkg/server/http"
+	web "nunu-eth/web"
 
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
@@ -30,6 +33,19 @@ func NewHTTPServer(
 		http.WithServerPort(conf.GetInt("http.port")),
 	)
 
+	// 前后端不分离测试
+	templateHtml, err := template.ParseFS(web.TemplateFs, "template/**/*.html")
+	if err != nil {
+		panic(err)
+	}
+
+	s.SetHTMLTemplate(templateHtml)
+	fads, err := fs.Sub(web.StaticFs, "static")
+	if err != nil {
+		panic(err)
+	}
+
+	s.StaticFS("/sttaic", http.FS(fads))
 	// swagger doc
 	docs.SwaggerInfo.BasePath = "/v1"
 	s.GET("/swagger/*any", ginSwagger.WrapHandler(
