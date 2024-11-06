@@ -1,16 +1,15 @@
 package server
 
 import (
-	"html/template"
-	"io/fs"
-	apiV1 "nunu-eth/api/v1"
+	"fmt"
 	"nunu-eth/docs"
 	"nunu-eth/internal/handler"
 	"nunu-eth/internal/middleware"
 	"nunu-eth/pkg/jwt"
 	"nunu-eth/pkg/log"
-	"nunu-eth/pkg/server/http"
-	web "nunu-eth/web"
+	nunuhttp "nunu-eth/pkg/server/http"
+	"nunu-eth/static"
+	"nunu-eth/web"
 
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
@@ -24,28 +23,17 @@ func NewHTTPServer(
 	jwt *jwt.JWT,
 	userHandler *handler.UserHandler,
 	commonHandler *handler.CommonHandler,
-) *http.Server {
+) *nunuhttp.Server {
 	gin.SetMode(gin.DebugMode)
-	s := http.NewServer(
+	s := nunuhttp.NewServer(
 		gin.Default(),
 		logger,
-		http.WithServerHost(conf.GetString("http.host")),
-		http.WithServerPort(conf.GetInt("http.port")),
+		nunuhttp.WithServerHost(conf.GetString("http.host")),
+		nunuhttp.WithServerPort(conf.GetInt("http.port")),
 	)
+	fmt.Println("newn   1111")
+	s.Use(static.Serve("/", static.EmbedFolder(web.HtmlsFs, ".")))
 
-	// 前后端不分离测试
-	templateHtml, err := template.ParseFS(web.TemplateFs, "template/**/*.html")
-	if err != nil {
-		panic(err)
-	}
-
-	s.SetHTMLTemplate(templateHtml)
-	fads, err := fs.Sub(web.StaticFs, "static")
-	if err != nil {
-		panic(err)
-	}
-
-	s.StaticFS("/sttaic", http.FS(fads))
 	// swagger doc
 	docs.SwaggerInfo.BasePath = "/v1"
 	s.GET("/swagger/*any", ginSwagger.WrapHandler(
@@ -61,10 +49,10 @@ func NewHTTPServer(
 		middleware.RequestLogMiddleware(logger),
 		//middleware.SignMiddleware(log),
 	)
-	s.GET("/", func(ctx *gin.Context) {
-		logger.WithContext(ctx).Info("hello")
-		apiV1.HandleSuccess(ctx, map[string]interface{}{
-			":)": "Thank you for using nunu!",
+
+	s.GET("/api", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"msg": "hello world",
 		})
 	})
 
