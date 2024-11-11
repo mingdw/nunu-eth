@@ -18,7 +18,7 @@
     <link href="../../asserts/css/vendor/prism.css" rel="stylesheet" />
 
 </head>
-
+   
 <body>
 
 
@@ -121,63 +121,57 @@ HEADER
 
                         <h1>快速开始</h1>
 
-                        <p>If you are not planning to customize your style with SCSS, simply remove the
-                            <code>asserts/scss/</code> folder and get started by opening the index.html file. So, this
-                            will be the structure of your template:</p>
+                        <p>如果你还没有连接以太坊客户端，不妨在本地虚拟画一个以太坊客户端，然后通过GoLang连接客户端，并且完成转账、生成钱包、查询交易等操作。</p>
+                        <p>Ganache(正式名称为 testrpc)是一个用 Node.js 编写的以太坊实现，用于在本地开发去中心化应用程序时进行测试。现在我们将带着您完成安装并连接到它。</p>
 
                         <h2>初始化客户端</h2>
-                        <code>
-                            git clone www.github.com/mingdw/nunu-eth.git
-                        </code>
-
-                        <!----------------------------------------------------------------------
-basic template
------------------------------------------------------------------------->
-                        <h2>项目启动</h2>
-
+                        
                         <!-- Trigger -->
-                        <button class="btn btn-sm btn-round btncopy mb-2" data-clipboard-target="#quickstart">
+                        <button class="btn btn-sm btn-round btncopy mb-2" data-clipboard-target="#initEthClient">
                             Copy
                         </button>
 
+                        <pre id="initEthClient" class="language-markup">
+1. npm install -g ganache-cli   //通过NPM安装 ganache。
+2. ganache-cli   //运行ganache客户端
+3.client, err := ethclient.Dial("http://localhost:8545")
+if err != nil {
+  log.Fatal(err)
+}  //通过go连接本地客户端
+                        </pre>
 
-                        <pre id="quickstart" class="language-markup">
-&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-&lt;head&gt;
-&lt;meta charset=&quot;utf-8&quot;/&gt;
-&lt;link rel=&quot;apple-touch-icon&quot; sizes=&quot;76x76&quot; href=&quot;../asserts/image/favicon.ico&quot;&gt;
-&lt;link rel=&quot;icon&quot; type=&quot;image/png&quot; href=&quot;../asserts/image/favicon.ico&quot;&gt;
-&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge,chrome=1&quot;/&gt;
-&lt;title&gt;Site Title&lt;/title&gt;
-&lt;meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport'/&gt;
-    
-&lt;!-- Fonts --&gt;
-&lt;link href=&quot;https://fonts.googleapis.com/css?family=Playfair+Display:400,700|Source+Sans+Pro:400,700&quot; rel=&quot;stylesheet&quot;&gt;
-&lt;link rel=&quot;stylesheet&quot; href=&quot;https://use.fontawesome.com/releases/v5.3.1/css/all.css&quot; integrity=&quot;sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU&quot; crossorigin=&quot;anonymous&quot;&gt;
-    
-&lt;!-- CSS --&gt;
-&lt;link href=&quot;../../asserts/css/main.css&quot; rel=&quot;stylesheet&quot;/&gt;
-    
-&lt;/head&gt;
-    
-&lt;body&gt; 
+                        <p class="mt-4">你也可以提交以下表单快速测试客户端连接</p>
+                        
+                        <div class="card">
+                            <div class="card-header">
+                              测试连接
+                            </div>
+                            <div class="card-body">
+                                <form>
+                                    <div class="form-row">
+                                      <div class="form-group col-md-6">
+                                        <label for="inputEmail4">url</label>
+                                        <input type="text" value="127.0.0.1" class="form-control" id="connUrl" placeholder="地址">
+                                      </div>
+                                      <div class="form-group col-md-6">
+                                        <label for="inputPassword4">port</label>
+                                        <input type="password" class="form-control" id="connPort" value="8545" placeholder="端口">
+                                      </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <button type="submit" class="btn btn-primary" id="connSubmit" >连接客户端</button>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <p class="text-success" id="connResult">连接成功！！！</p>
+                                        </div>
+                                      </div>
+                                </form>
+                            </div>
+                          </div>
 
-&lt;main&gt; My content goes here &lt;/main&gt;
+                       
 
-&lt;!-- Javascript --&gt;
-&lt;script src=&quot;../../asserts/js/vendor/jquery.min.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;../../asserts/js/vendor/popper.min.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;../../asserts/js/vendor/bootstrap.min.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;../../asserts/js/functions.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
-
-&lt;/body&gt;
-    
-&lt;/html&gt;
-
-</pre>
-
-                        <p class="mt-4">That's it! Start editing your theme with an HTML editor, such as Brackets.</p>
 
                         <h1>GO 以太坊开发</h1>
 
@@ -1174,7 +1168,7 @@ FOOTER
                             </script>
                             <a target="_blank"
                                 href="https://www.wowthemes.net/mundana-free-html-bootstrap-template/">Mundana Theme</a>
-                            by WowThemes.net.
+                            by WowThemes.net.1222
                         </span>
                     </div>
                 </div>
@@ -1209,6 +1203,17 @@ JAVASCRIPTS
             $('body').scrollspy({
                 target: navSelector
             });
+
+            $('#connSubmit').add('click',function(){
+                var data = {
+                    url: $('#connUrl').val(),
+                    port: $('#connPort').val()
+                }
+                console.info("连接客户端测试:"+JSON.stringify(data))
+            })
+
+
+        
         });
     </script>
 
