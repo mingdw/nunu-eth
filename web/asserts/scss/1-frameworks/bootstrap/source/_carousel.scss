@@ -121,6 +121,7 @@
   color: $carousel-control-color;
   text-align: center;
   opacity: $carousel-control-opacity;
+  border: 0 0 0 0;
   // We can't have a transition here because WebKit cancels the carousel
   // animation if you trip this while in the middle of another animation.
 
