@@ -1,0 +1,9 @@
+{
+    "launch": {
+    
+        "configurations": [],
+        "compounds": []
+    },
+    "go.gopath": "D:\\goworkspace",
+    "go.goroot": "C:\\Program Files\\Go",
+}

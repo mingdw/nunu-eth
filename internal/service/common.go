@@ -48,13 +48,14 @@ func (s *commonService) ConnectTest(ctx context.Context, req *v1.ETHConnectReque
 		resultStatus = -1
 		return
 	}
-
-	client, err := ethclient.Dial("http://" + req.Url + ":" + req.Port)
+	address := "http://" + req.Url + ":" + req.Port
+	log.Fatal("address: ", address)
+	client, err := ethclient.Dial("https://cloudflare-eth.com")
 	if err != nil {
 		log.Fatal(err)
-		e = err
-		return
 	}
-	log.Fatal(client)
+	_ = client
+	fmt.Println("we have a connection: ", client)
+
 	return
 }
