@@ -29,3 +29,8 @@ type GetProfileResponse struct {
 	Response
 	Data GetProfileResponseData
 }
+
+type ETHConnectRequestData struct {
+	Url  string `json:"url" example:"url"`
+	Port string `json:"port"`
+}

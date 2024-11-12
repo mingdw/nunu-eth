@@ -13,7 +13,7 @@ data:
   db:
     user:
       driver: mysql
-      dsn: root:mdw19921129#@tcp(127.0.0.1:3306)/nunu_eth?charset=utf8mb4&parseTime=True&loc=Local
+      dsn: root:Mdw19921129%@tcp(127.0.0.1:3306)/nunu_eth?charset=utf8mb4&parseTime=True&loc=Local
   redis:
     addr: 127.0.0.1:6350
     password: ""

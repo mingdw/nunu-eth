@@ -1,6 +1,8 @@
 package handler
 
 import (
+	"net/http"
+	v1 "nunu-eth/api/v1"
 	"nunu-eth/internal/service"
 
 	"github.com/gin-gonic/gin"
@@ -37,4 +39,23 @@ func (h *CommonHandler) GetCommon(ctx *gin.Context) {
 
 func (h *CommonHandler) Test(ctx *gin.Context) {
 
+}
+
+func (h *CommonHandler) TestConnectClient(ctx *gin.Context) {
+	var req v1.ETHConnectRequestData
+	if err := ctx.ShouldBindJSON(&req); err != nil {
+		v1.HandleError(ctx, http.StatusBadRequest, v1.ErrBadRequest, nil)
+		return
+	}
+
+	status, err := h.commonService.ConnectTest(ctx, &req)
+	if err != nil {
+		v1.HandleError(ctx, http.StatusUnauthorized, v1.ErrUnauthorized, nil)
+		return
+	}
+	if status != 0 {
+		v1.HandleError(ctx, http.StatusUnauthorized, v1.ErrUnauthorized, nil)
+		return
+	}
+	v1.HandleSuccess(ctx, status)
 }

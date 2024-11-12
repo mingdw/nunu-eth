@@ -1,7 +1,6 @@
 package server
 
 import (
-	"fmt"
 	"nunu-eth/docs"
 	"nunu-eth/internal/handler"
 	"nunu-eth/internal/middleware"
@@ -31,7 +30,6 @@ func NewHTTPServer(
 		nunuhttp.WithServerHost(conf.GetString("http.host")),
 		nunuhttp.WithServerPort(conf.GetInt("http.port")),
 	)
-	fmt.Println("newn   1111")
 	s.Use(static.Serve("/", static.EmbedFolder(web.HtmlsFs, ".")))
 
 	// swagger doc
@@ -50,12 +48,10 @@ func NewHTTPServer(
 		//middleware.SignMiddleware(log),
 	)
 
-	s.GET("/api", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"msg": "hello world",
-		})
-	})
-
+	api := s.Group("/api")
+	{
+		api.POST("/connectTest", commonHandler.TestConnectClient)
+	}
 	v1 := s.Group("/v1")
 	{
 		// No route group has permission
@@ -78,6 +74,5 @@ func NewHTTPServer(
 		}
 
 	}
-
 	return s
 }
