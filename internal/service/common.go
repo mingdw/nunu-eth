@@ -49,13 +49,23 @@ func (s *commonService) ConnectTest(ctx context.Context, req *v1.ETHConnectReque
 		return
 	}
 	address := "http://" + req.Url + ":" + req.Port
-	log.Fatal("address: ", address)
-	client, err := ethclient.Dial("https://cloudflare-eth.com")
-	if err != nil {
-		log.Fatal(err)
+	log.Println("address init: ", address)
+	if connect(address) {
+		log.Println("init address success！！！")
+	} else {
+		resultStatus = -1
+		log.Println("init address success Fail！！")
 	}
-	_ = client
-	fmt.Println("we have a connection: ", client)
 
 	return
+}
+
+func connect(url string) bool {
+	client, err := ethclient.Dial(url)
+	if err != nil {
+		fmt.Println("Could not connect to Infura with ethclient: fail")
+		return false
+	}
+	_ = client
+	return true
 }

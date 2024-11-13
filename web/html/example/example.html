@@ -124,7 +124,7 @@ HEADER
                         <p>如果你还没有连接以太坊客户端，不妨在本地虚拟画一个以太坊客户端，然后通过GoLang连接客户端，并且完成转账、生成钱包、查询交易等操作。</p>
                         <p>Ganache(正式名称为 testrpc)是一个用 Node.js 编写的以太坊实现，用于在本地开发去中心化应用程序时进行测试。现在我们将带着您完成安装并连接到它。</p>
 
-                        <h2>初始化客户端</h2>
+                        <h2> 1.初始化本地以太坊测试客户端</h2>
 
                         <!-- Trigger -->
                         <button class="btn btn-sm btn-round btncopy mb-2" data-clipboard-target="#initEthClient">
@@ -140,8 +140,10 @@ if err != nil {
 }  //通过go连接本地客户端
                         </pre>
 
-                        <p class="mt-4 mb-2">你也可以提交以下表单快速测试客户端连接</p>
-
+                        <h2> 2.快速初始化连接</h2>
+                        
+                        <p class="text-primary">你也可以提交以下表单快速测试客户端连接</p>
+                        <br/>
                         <div class="card">
                             <div class="card-header">
                                 测试连接
@@ -163,90 +165,28 @@ if err != nil {
 
                                     <div class="form-group row">
                                         <button type="button" class="btn btn-outline-primary col-sm-2 col-form-label"
-                                            id="connSubmit">测试连接</button>
+                                            id="connSubmit">初始化客户端</button>
                                         <div class="col-sm-10">
                                             <input type="text" class="form-control" id="connResult">
                                         </div>
                                     </div>
                                 </form>
+                                <label class="text-danger"> 注意：此处并不会直接进行连接以太坊客户端，只是执行客户端的初始化，待真正操作以太坊时候会进行连接，但是会读取此处的初始化连接信息</label>
                             </div>
                         </div>
 
 
 
 
-                        <h1>GO 以太坊开发</h1>
-
-                        <p>If you are planning to customize the template with Gulp & SCSS, follow the guide below.</p>
-
-                        <p>First, this is the structure of your template files:</p>
+                        <h1> GO 以太坊开发实例</h1>
 
                         <h2> 简介</h2>
-                        <h3> 关于NuNu-Eth</h3>
-
-                        <h3> 历史时刻</h3>
-
-                        <h3> 展望未来</h3>
 
                         <h2>1. 初始化客户端</h2>
-                        <p>Gulp can automate tasks in your development workflow. Gulp is also required in order to work
-                            with <code>scss</code> files. In order to use Gulp you will need to download Node JS first:
-                        </p>
-
-                        <p class="mb-3"><a href="https://nodejs.org/en/" class="btn btn-primary btn-icon"
-                                target="_blank">
-                                <i class="fab fa-node-js mr-2"></i> Download Node JS</a>
-                        </p>
-
-                        <p>After Node is installed you can now proceed to Gulp installation. To do that simply run the
-                            following command in your terminal. This will install Gulp globally. Aferwards you can cd to
-                            you project’s folder where our KIT is installed.</p>
-
-                        <code>npm install gulp-cli -g</code>
-
-                        <!----------------------------------------------------------------------
-scss
------------------------------------------------------------------------->
-
+                       
                         <h2>2. 账户</h2>
-                        <p>It is highly recommended that all the customized styles to be stored only within the user’s
-                            files from the <code>scss</code> folder. Gulp is required for this. </p>
-                        <ol>
-                            <li>Download the project’s zip.</li>
-                            <li>Make sure you have node.js (https://nodejs.org/en/) installed.</li>
-                            <li>Type <code class="highlighter-rouge">npm install</code> in terminal/console in the
-                                source folder where <code class="highlighter-rouge">package.json</code> is located.</li>
-                            <li>Make sure you have gulp <code class="highlighter-rouge">npm install gulp</code></li>
-                            <li>Run in terminal <code class="highlighter-rouge">gulp open-app</code> for opening the
-                                Dashboard Page (default) of the product.</li>
-                            <li>Run in terminal <code class="highlighter-rouge">gulp compile-scss</code> for a single
-                                compilation or <code class="highlighter-rouge">gulp watch</code> for continous
-                                compilation of the changes that you make in <code
-                                    class="highlighter-rouge">*.scss</code> files. This command should be run in the
-                                same folder where <code class="highlighter-rouge">gulpfile.js</code> and <code
-                                    class="highlighter-rouge">package.json</code> are located.</li>
-                        </ol>
-
-
-                        <div class="alert alert-orange mt-5 d-flex align-items-center">
-                            <div>
-                                <span
-                                    class="align-self-center iconbox iconsmall fill rounded-circle bg-danger text-white shadow border-0 mr-2"><i
-                                        class="fas fa-bullhorn"></i>
-                                </span>
-                            </div>
-                            <div>When working with SCSS, you only need to these 2 files: <ul>
-                                    <li><code>asserts/scss/frameworks/bootstrap/bootstrap-user-variables.scss</code>
-                                        (here you can edit or add variables)</li>
-                                    <li><code>asserts/scss/main.scss</code> (here you will customize your style)</li>
-                                </ul>
-                                Do not touch anything else! Everything you edit in these 2 files will be compiled in
-                                <code>main.css</code>.
-                            </div>
-                        </div>
-
+                        
                         <h2>3. 账户余额</h2>
-
 
                         <h2>4. 账户代币余额</h2>
 
