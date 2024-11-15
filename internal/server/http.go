@@ -51,6 +51,8 @@ func NewHTTPServer(
 	api := s.Group("/api")
 	{
 		api.POST("/connectTest", commonHandler.TestConnectClient)
+
+		api.GET("/accountFormat", commonHandler.AccountFormt)
 	}
 	v1 := s.Group("/v1")
 	{

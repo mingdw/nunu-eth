@@ -7,5 +7,5 @@ type Common struct {
 }
 
 func (m *Common) TableName() string {
-    return "common"
+	return "common"
 }

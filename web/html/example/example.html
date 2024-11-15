@@ -249,7 +249,54 @@ if err != nil {
 
                         <h2>1. 初始化客户端</h2>
                         
+                        <div>
+                            <span>参考   <a href="#testConnect" class="link text-info">快速开始/ 初始化客户端</a></span>
+                        </div>
+
                         <h2>2. 账户</h2>
+
+                        <p>以太坊上的账户要么是钱包地址要么是智能合约地址。它们看起来像是 0x71c7656ec7ab88b098defb751b7401b5f6d8976f，它们用于将 ETH 发送到另一个用户，并且还用于在需要和区块链交互时指一个智能合约。它们是唯一的，且是从私钥导出的。要使用 go-ethereum 的账户地址，您必须先将它们转化为 go-ethereum 中的 common.Address 类型。</p>
+                    </br>
+                        <p>可以点击以下测试快速测试结果：<label class="text-danger">样例：0x71c7656ec7ab88b098defb751b7401b5f6d8976f</label></p>
+                    </br>
+                        <div class="card">
+                            <div class="card-body">
+                                <form id="accountForm" action="#">
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">请输入账户地址：</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="accountAddress" value="0x71c7656ec7ab88b098defb751b7401b5f6d8976f">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-12 col-12 align-items-center justify-content-center">
+                                            <button type="button" class="btn btn-outline-primary col-sm-2" id="accountButton">账户转换</button>
+                                        </div>
+                                       
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">HEX:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="hexAccount" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">HASH HEX:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="hashHexAccount" value="">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">BYTES:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="bytesAccount" value="">
+                                        </div>
+                                    </div>
+                                </form>
+                                <label class="text-danger"> 注意：转换结果以字符串形式表示</label>
+                            </div>
+                        </div>
                         
                         <h2>3. 账户余额</h2>
 
@@ -1217,10 +1264,92 @@ JAVASCRIPTS
                 connectTest(data)
             })
 
+            $('#accountButton').click(function(){
+                var accountValue = $('#accountAddress').val()
+                if(accountValue == ''){
+                    layer.alert("账户地址不能为空！", {
+                            icon: 2,
+                            skin: "lyear-skin-danger",
+                            title: "转换提示",
+                            closeBtn: 1,
+                            btn: ["确定", "取消"],
+                            yes: function (index, layero) {
+                                layer.close(index);
+                            },
+                            cancle: function (index, layero) {
+                                layer.close(index);
+                            },
+                        });
+                }else{
+                    formatAccount(accountValue)
+                }
+            })
+
 
 
         });
 
+        function formatAccount(accountAddress){
+            $.ajax({
+                type: "GET",
+                url: basePath + "/api/accountFormat?accountAddress = "+accountAddress,
+                contentType: "application/json",
+                success: function (response) {
+                    console.info("返回结果： " + JSON.stringify(response))
+                    if (response.code == 0) {
+                        layer.alert("转换成功", {
+                            icon: 1,
+                            skin: "lyear-skin-success",
+                            title: "转换提示",
+                            closeBtn: 1,
+                            btn: ["确定", "取消"],
+                            yes: function (index, layero) {
+                                layer.close(index);
+                               $('#hexAccount').val(response.data.hexAccount) 
+                               $('#hashHexAccount').val(response.data.hashHexAccount) 
+                               $('#bytesAccount').val(response.data.bytesAccount)
+                            },
+                            cancle: function (index, layero) {
+                                layer.close(index);
+                            },
+                        });
+                    } else {
+                        layer.alert("转换失败", {
+                            icon: 2,
+                            skin: "lyear-skin-danger",
+                            title: "转换提示",
+                            closeBtn: 1,
+                            btn: ["确定", "取消"],
+                            yes: function (index, layero) {
+                                layer.close(index);
+                            },
+                            cancle: function (index, layero) {
+                                layer.close(index);
+                            },
+                        });
+                    }
+
+                },
+                error: function (respons) {
+                    layer.alert("连接失败", {
+                        icon: 2,
+                        skin: "lyear-skin-danger",
+                        title: "链接提示",
+                        closeBtn: 1,
+                        btn: ["确定", "取消"],
+                        yes: function (index, layero) {
+                            layer.close(index);
+                            $('#connResult').val("连接失败")
+                            $('#connResult').addClass("text-danger")
+                        },
+                        cancle: function (index, layero) {
+                            layer.close(index);
+                        },
+                    });
+                }
+
+            })
+        }
 
         function connectTest(data) {
             $.ajax({

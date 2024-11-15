@@ -8,14 +8,23 @@ import (
 	"nunu-eth/internal/model"
 	"nunu-eth/internal/repository"
 
+	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
 )
+
+type AccountInfo struct {
+	HexAccount     string `json:"hexAccount" gorm:"column:hexAccount"`
+	HashHexAccount string `json:"hashHexAccount" gorm:"column:hashHexAccount"`
+	BytesAccount   string `json:"bytesAccount" gorm:"column:bytesAccount"`
+}
 
 type CommonService interface {
 	GetCommon(ctx context.Context, id int64) (*model.Common, error)
 	Test(ctx context.Context, id int64) (*model.Common, error)
 
 	ConnectTest(ctx context.Context, req *v1.ETHConnectRequestData) (status int, e error)
+
+	AccountFormatInfo(ctx context.Context, req *v1.AccountAddress) (accountInfo AccountInfo, err error)
 }
 
 func NewCommonService(
@@ -33,12 +42,30 @@ type commonService struct {
 	commonRepository repository.CommonRepository
 }
 
+// AccountFormatInfo implements CommonService.
+func (s *commonService) AccountFormatInfo(ctx context.Context, req *v1.AccountAddress) (accountInfo AccountInfo, err error) {
+	panic("unimplemented")
+}
+
 func (s *commonService) GetCommon(ctx context.Context, id int64) (*model.Common, error) {
 	return s.commonRepository.GetCommon(ctx, id)
 }
 
 func (s *commonService) Test(ctx context.Context, id int64) (*model.Common, error) {
 	return s.commonRepository.Test(ctx, id)
+}
+
+func AccountFormatInfo(ctx context.Context, req *v1.AccountAddress) (account AccountInfo, err error) {
+	address := common.HexToAddress(req.AccountAddress)
+	if len(address) > 0 {
+		account := &AccountInfo{
+			HexAccount:     address.Hex(),
+			HashHexAccount: address.String(),
+			BytesAccount:   string(address.Bytes()),
+		}
+		_ = account
+	}
+	return
 }
 
 func (s *commonService) ConnectTest(ctx context.Context, req *v1.ETHConnectRequestData) (resultStatus int, e error) {

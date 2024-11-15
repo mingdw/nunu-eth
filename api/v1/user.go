@@ -34,3 +34,7 @@ type ETHConnectRequestData struct {
 	Url  string `json:"url" example:"url"`
 	Port string `json:"port"`
 }
+
+type AccountAddress struct {
+	AccountAddress string `json:"accountAddress" example:"accountAddress"`
+}
