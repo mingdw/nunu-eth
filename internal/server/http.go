@@ -53,6 +53,10 @@ func NewHTTPServer(
 		api.POST("/connectTest", commonHandler.TestConnectClient)
 
 		api.GET("/accountFormat", commonHandler.AccountFormt)
+
+		api.POST("/accountBalance", commonHandler.AccountBalance)
+
+		api.POST("/blockQuery", commonHandler.BlockQuery)
 	}
 	v1 := s.Group("/v1")
 	{

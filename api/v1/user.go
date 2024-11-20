@@ -38,3 +38,14 @@ type ETHConnectRequestData struct {
 type AccountAddress struct {
 	AccountAddress string `json:"accountAddress" example:"accountAddress"`
 }
+
+type AccountBalanceRequest struct {
+	Url     string `json:"url" example:"url"`
+	Address string `json:"address"`
+	Block   string `json:"block"`
+}
+
+type BlockQueryRequest struct {
+	Url      string `json:"url" example:"url"`
+	BlockNum string `json:"blockNum"`
+}

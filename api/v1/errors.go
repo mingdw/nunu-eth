@@ -2,11 +2,11 @@ package v1
 
 var (
 	// common errors
-	ErrSuccess             = newError(0, "ok")
-	ErrBadRequest          = newError(400, "Bad Request")
-	ErrUnauthorized        = newError(401, "Unauthorized")
-	ErrNotFound            = newError(404, "Not Found")
-	ErrInternalServerError = newError(500, "Internal Server Error")
+	ErrSuccess             = newError(0, "成功")
+	ErrBadRequest          = newError(400, "请求参数有误")
+	ErrUnauthorized        = newError(401, "未授权的请求")
+	ErrNotFound            = newError(404, "找不到对应服务")
+	ErrInternalServerError = newError(500, "系统错误")
 
 	// more biz errors
 	ErrEmailAlreadyUse = newError(1001, "The email is already in use.")

@@ -10,8 +10,10 @@
             "type": "go",
             "request": "launch",
             "mode": "debug",
-            "program": "${workspaceFolder}/cmd/server",
-            "args": ["-conf","config/local.yml"]
+            "program": "${workspaceFolder}/cmd/server/main.go",
+            "args": [],
+            "env":{},
+            "cwd": "${workspaceFolder}"
         }
 
     ]

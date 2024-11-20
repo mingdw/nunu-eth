@@ -62,14 +62,43 @@ func (h *CommonHandler) TestConnectClient(ctx *gin.Context) {
 
 func (h *CommonHandler) AccountFormt(ctx *gin.Context) {
 	var req v1.AccountAddress
-	if err := ctx.ShouldBind(&req); err != nil {
+	accountAddress := ctx.Query("accountAddress")
+	if accountAddress == "" {
 		v1.HandleError(ctx, http.StatusBadRequest, v1.ErrBadRequest, nil)
 		return
 	}
-
+	req.AccountAddress = accountAddress
 	accountInfo, err := h.commonService.AccountFormatInfo(ctx, &req)
 	if err != nil {
 		v1.HandleError(ctx, http.StatusUnauthorized, v1.ErrUnauthorized, nil)
+		return
+	}
+	v1.HandleSuccess(ctx, accountInfo)
+}
+
+func (h *CommonHandler) AccountBalance(ctx *gin.Context) {
+	var req v1.AccountBalanceRequest
+	if err := ctx.ShouldBindJSON(&req); err != nil {
+		v1.HandleError(ctx, http.StatusBadRequest, v1.ErrBadRequest, nil)
+		return
+	}
+	accountInfo, err := h.commonService.AccountBalance(ctx, &req)
+	if err != nil {
+		v1.HandleError(ctx, http.StatusBadRequest, v1.ErrBadRequest, nil)
+		return
+	}
+	v1.HandleSuccess(ctx, accountInfo)
+}
+
+func (h *CommonHandler) BlockQuery(ctx *gin.Context) {
+	var req v1.BlockQueryRequest
+	if err := ctx.ShouldBindJSON(&req); err != nil {
+		v1.HandleError(ctx, http.StatusBadRequest, v1.ErrBadRequest, nil)
+		return
+	}
+	accountInfo, err := h.commonService.BlockQuery(ctx, &req)
+	if err != nil {
+		v1.HandleError(ctx, http.StatusBadRequest, v1.ErrBadRequest, nil)
 		return
 	}
 	v1.HandleSuccess(ctx, accountInfo)

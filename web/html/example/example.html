@@ -299,6 +299,100 @@ if err != nil {
                         </div>
                         
                         <h2>3. 账户余额</h2>
+                        <p>一个以太坊帐户是一个具有以太币 (ETH) 余额的实体，可以在以太坊上发送交易。 帐户可以由用户控制，也可以作为智能合约部署。
+                        </p>
+
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title"> <strong>以太坊有两种帐户类型：</strong></h5>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">1. 外部所有的帐户 (EOA) – 由任何拥有私钥的人控制</li>
+                                    <li class="list-group-item">2. 合约帐户 – 部署到网络上的智能合约，由代码控制。</li>
+                                </ul>
+                            </br>
+                                <h5 class="card-title"> <strong>这两种帐户类型都能：</strong></h5>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item list-group-item-flush">1. 收、持有和发送 ETH 和 token</li>
+                                    <li class="list-group-item list-group-item-flush">2. 与已部署的智能合约进行交互。</li>
+                                </ul>
+                            </br>
+                            
+                            <h4 class="card-title"><strong>主要区别</strong></h4>
+                            <h5 class="card-title"> <strong>外部账户</strong></h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item list-group-item-flush">1. 创建帐户是免费的</li>
+                                <li class="list-group-item list-group-item-flush">2. 可以发起交易</li>
+                                <li class="list-group-item list-group-item-flush">3. 外部所有的帐户之间只能进行以太币和代币交易</li>
+                                <li class="list-group-item list-group-item-flush">4. 由一对加密密钥组成：控制帐户活动的公钥和私钥</li>
+                            </ul>
+                            <h5 class="card-title"> <strong>合约账户</strong></h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item list-group-item-flush">1. 创建合约存在成本，因为需要使用网络存储空间</li>
+                                <li class="list-group-item list-group-item-flush">2. 只能在收到交易时发送交易</li>
+                                <li class="list-group-item list-group-item-flush">3. 从外部帐户向合约帐户发起的交易能触发可执行多种操作的代码，例如转移代币甚至创建新合约</li>
+                                <li class="list-group-item list-group-item-flush">4. 合约帐户没有私钥。 相反，它们由智能合约代码逻辑控制</li>
+                            </ul>
+                            </div>
+                        </div>
+                    </br>
+                        <p>通过以下测试可以快速获取账户信<span> (注意：实际信息为测试网信息)</span></p>
+                        <div class="card">
+                            <div class="card-body">
+                                <form id="accountBalanceForm" action="#">
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">请输入连接地址：</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="accountConnUrl" value="https://cloudflare-eth.com">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">请输入账户地址：</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="accountBalanceAddress" value="0x71c7656ec7ab88b098defb751b7401b5f6d8976f">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">请输入区块号：</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="accountBalanceBlock" value="" placeholder="如果不输入则查询最新余额,可用高度5532993">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-12 col-12 align-items-center justify-content-center">
+                                            <button type="button" class="btn btn-outline-primary col-sm-2" id="accountBalanceButton">获取账户信息</button>
+                                        </div>
+                                       
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">最新余额（单位：wei）:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="weiBalance" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">最新余额（单位：gwei）:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="gweiBalance" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">区块余额（单位：wei）:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="unDealWeiBalance" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">区块余额（单位：gwei）:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="unDealGWeiBalance" value="">
+                                        </div>
+                                    </div>
+                                </form>
+                                <label class="text-danger"> 注意：转换结果以字符串形式表示</label>
+                            </div>
+                        </div>
+
 
                         <h2>4. 账户代币余额</h2>
 
@@ -310,8 +404,130 @@ if err != nil {
                         <h2>7. 分层确定性（HD）Wallet</h2>
 
                         <h2>8. 查询区块</h2>
+                        <p>区块是指一批交易的组合，并且包含链中上一个区块的哈希。 这将区块连接在一起（成为一个链），因为哈希是从区块数据中加密得出的。 这可以防止欺诈，因为以前的任何区块中的任何改变都会使后续所有区块无效，而且所有哈希都会改变，所有运行区块链的人都会注意到。</p>
+                        </br>
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title"><strong>区块如何工作？</strong></h4>
+                                <p>为了保存交易历史，区块被严格排序（创建的每个新区块都包含一个其父块的引用），区块内的交易也严格排序。 除极少数情况外，在任何特定时间，网络上的所有参与者都同意区块的确切数目和历史， 并且正在努力将当前的活动交易请求分批到下一个区块。</p>
+                            </br>
+                                <p>随机选择的验证者在网络上构建完区块后，该区块将传播到整个网络；所有节点都将该区块添加至其区块链的末尾，然后挑选新的验证者来创建下一个区块。 目前，确切的区块构建过程和提交/共识过程由以太坊的“权益证明”协议规定。</p>
 
+                        </br>
+                                <h4 class="card-title"><strong>权益证明协议</strong></h4>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item list-group-item-flush">1. 验证节点必须向存款合约中质押 32 个以太币，作为抵押品防止发生不良行为。 这有助于保护网络，因为如果发生不诚实活动且可以证实，部分甚至全部质押金额将被销毁</li>
+                                    <li class="list-group-item list-group-item-flush">2. 在每个时隙（12 秒的时间间隔）中，会随机选择一个验证者作为区块提议者。 他们将交易打包并执行，然后确定一个新的“状态”。 他们将这些信息包装到一个区块中并传送给其他验证者。</li>
+                                    <li class="list-group-item list-group-item-flush">3. 其他获悉新区块的验证者再次执行区块中包含的交易，确定他们同意对全局状态提出的修改。 假设该区块是有效的，验证者就将该区块添加进各自的数据库。</li>
+                                    <li class="list-group-item list-group-item-flush">4. 如果验证者获悉在同一时隙内有两个冲突区块，他们会使用自己的分叉选择算法选择获得最多质押以太币支持的那一个区块。</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </br>
+                        <p>一个区块中包含大量信息，包括区块头信息header，和区块的body</p>
+                    </br>
+                        <div class="card">
+                            <h5 class="card-title"><strong>区块头信息bloack header</strong></h5>
+                            <div class="container">
+                                <table class="table table-bordered">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="row">序号</th>
+                                            <th scope="row">字段</th>
+                                            <th scope="row">描述</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="col">1</th>
+                                            <td>slot</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col">2</th>
+                                            <td>proposer_index</td>
+                                            <td>1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111啊啊啊啊啊</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col">3</th>
+                                            <td>parent_root</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col">4</th>
+                                            <td>state_root</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col">5</th>
+                                            <td>body</td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </br>
+                        <p class="text-danger">通过以下快速测试可以获取区块信息</p>
+                        <div class="card">
+                            <div class="card-body">
+                                <form id="blockInfoForm" action="#">
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">请输入测试网地址：</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="blockUrl" value="https://cloudflare-eth.com">
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">请输入区块号：</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="blockNum" value="" placeholder="如果不输入则查询最新的区块信息">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-12 col-12 align-items-center justify-content-center">
+                                            <button type="button" class="btn btn-outline-primary col-sm-2" id="blockInfoButton">查询区块</button>
+                                        </div>
+                                       
+                                    </div>
+                                   
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">区块号:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="weiBalance" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">父区块hash:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="gweiBalance" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">区块难度：</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="unDealWeiBalance" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">区块摘要:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="unDealGWeiBalance" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">交易列表:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="unDealGWeiBalance" value="">
+                                        </div>
+                                    </div>
+                                </form>
+                                <label class="text-danger"> 注意：转换结果以字符串形式表示</label>
+                            </div>
+                        </div>
                         <h2>9. 查询交易</h2>
+                        
 
                         <h2>10. 转账以太币</h2>
 
@@ -1286,13 +1502,160 @@ JAVASCRIPTS
             })
 
 
+            $('#accountBalanceButton').click(function(){
+                var accountConnUrl = $('#accountConnUrl').val()
+                var accountAddress = $('#accountBalanceAddress').val()
+                var block  = $('#accountBalanceBlock').val()
+                var data = {
+                   url: accountConnUrl,
+                   address: accountAddress,
+                   block: block 
+                }
+                postBalance(data)
+            })
 
+            
+
+            $('#blockInfoButton').click(function(){
+                var url = $('#blockUrl').val()
+                var blockNum = $('#blockNum').val()
+                var data = {
+                   url: url,
+                   blockNum: blockNum 
+                }
+                postBlockInfo(data)
+            })
         });
+
+        function postBlockInfo(data){
+            $.ajax({
+                type: "POST",
+                url: basePath + "/api/blockQuery",
+                data: JSON.stringify(data),
+                contentType: "application/json",
+                success: function (response) {
+                    console.info("postBlockInfo 返回结果： " + JSON.stringify(response))
+                    if (response.code == 0) {
+                        layer.alert("获取区块信息成功", {
+                            icon: 1,
+                            skin: "lyear-skin-success",
+                            title: "获取区块信息提示",
+                            closeBtn: 1,
+                            btn: ["确定", "取消"],
+                            yes: function (index, layero) {
+                                layer.close(index);
+                               
+                                
+                            },
+                            cancle: function (index, layero) {
+                                layer.close(index);
+                            },
+                        });
+                    } else {
+                        layer.alert("获取区块信息失败", {
+                            icon: 2,
+                            skin: "lyear-skin-danger",
+                            title: "获取区块信息提示",
+                            closeBtn: 1,
+                            btn: ["确定", "取消"],
+                            yes: function (index, layero) {
+                                layer.close(index);
+                               
+                            },
+                            cancle: function (index, layero) {
+                                layer.close(index);
+                            },
+                        });
+                    }
+
+                },
+                error: function (respons) {
+                    layer.alert("获取区块信息失败", {
+                        icon: 2,
+                        skin: "lyear-skin-danger",
+                        title: "获取区块信息提示",
+                        closeBtn: 1,
+                        btn: ["确定", "取消"],
+                        yes: function (index, layero) {
+                            layer.close(index);
+                        },
+                        cancle: function (index, layero) {
+                            layer.close(index);
+                        },
+                    });
+                }
+            })
+
+        }
+
+        function postBalance(data){
+            $.ajax({
+                type: "POST",
+                url: basePath + "/api/accountBalance",
+                data: JSON.stringify(data),
+                contentType: "application/json",
+                success: function (response) {
+                    console.info("返回结果： " + JSON.stringify(response))
+                    if (response.code == 0) {
+                        layer.alert("获取账户余额成功", {
+                            icon: 1,
+                            skin: "lyear-skin-success",
+                            title: "获取账户余额提示",
+                            closeBtn: 1,
+                            btn: ["确定", "取消"],
+                            yes: function (index, layero) {
+                                layer.close(index);
+                                $('#weiBalance').val( response.data.wei)
+                                $('#gweiBalance').val( response.data.gwei)
+                                $('#unDealWeiBalance').val( response.data.unDealWei)
+                                $('#unDealGWeiBalance').val( response.data.unDealGWei)
+                                
+                            },
+                            cancle: function (index, layero) {
+                                layer.close(index);
+                            },
+                        });
+                    } else {
+                        layer.alert("获取账户余额失败", {
+                            icon: 2,
+                            skin: "lyear-skin-danger",
+                            title: "链接提示",
+                            closeBtn: 1,
+                            btn: ["确定", "取消"],
+                            yes: function (index, layero) {
+                                layer.close(index);
+                                $('#connResult').val("连接失败")
+                                $('#connResult').addClass("text-danger")
+                            },
+                            cancle: function (index, layero) {
+                                layer.close(index);
+                            },
+                        });
+                    }
+
+                },
+                error: function (respons) {
+                    layer.alert("获取账户余额失败", {
+                        icon: 2,
+                        skin: "lyear-skin-danger",
+                        title: "链接提示",
+                        closeBtn: 1,
+                        btn: ["确定", "取消"],
+                        yes: function (index, layero) {
+                            layer.close(index);
+                        },
+                        cancle: function (index, layero) {
+                            layer.close(index);
+                        },
+                    });
+                }
+            })
+        }
 
         function formatAccount(accountAddress){
             $.ajax({
                 type: "GET",
-                url: basePath + "/api/accountFormat?accountAddress = "+accountAddress,
+                url: basePath + "/api/accountFormat?accountAddress="+accountAddress,
                 contentType: "application/json",
                 success: function (response) {
                     console.info("返回结果： " + JSON.stringify(response))
