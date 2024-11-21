@@ -12,6 +12,8 @@
 
     <!-- Main CSS -->
     <link href="../../asserts/css/main.css" rel="stylesheet" />
+    <link href="../../asserts/js/bootstrap-table/bootstrap-table.min.css" />
+    
     <link href="../../asserts/js/layui/css/layui.css" rel="stylesheet" />
     <!-- Docs CSS -->
     <link href="../../asserts/css/vendor/bootstrap-toc.css" rel="stylesheet" />
@@ -141,9 +143,9 @@ if err != nil {
                         </pre>
 
                         <h2> 2.快速初始化连接</h2>
-                        
+
                         <p class="text-primary">你也可以提交以下表单快速测试客户端连接</p>
-                        <br/>
+                        <br />
                         <div class="card" id="testConnect">
                             <div class="card-header">
                                 测试连接
@@ -171,7 +173,8 @@ if err != nil {
                                         </div>
                                     </div>
                                 </form>
-                                <label class="text-danger"> 注意：此处并不会直接进行连接以太坊客户端，只是执行客户端的初始化，待真正操作以太坊时候会进行连接，但是会读取此处的初始化连接信息</label>
+                                <label class="text-danger">
+                                    注意：此处并不会直接进行连接以太坊客户端，只是执行客户端的初始化，待真正操作以太坊时候会进行连接，但是会读取此处的初始化连接信息</label>
                             </div>
                         </div>
 
@@ -187,11 +190,14 @@ if err != nil {
                                 <h5 class="card-title"> <strong>什么是区块链？</strong></h5>
                                 </hr>
                                 <p class="card-text">
-                                        对区块链最好的描述是将其描述为一个公共数据库，它由网络中的许多计算机更新和共享。 "区块"指的是数据和状态是按顺序批量或"区块"存储的。 如果你向别人发送 ETH，需要将交易数据添加到一个区块中才算成功。
-                                "链"指的是每个区块加密引用其父块。 换句话说，区块被链接在一起。 在不改变所有后续区块的情况下，区块内数据是无法改变，但改变后续区块需要整个网络的共识。
-                                网络中的每台计算机都必须就每个新区块和链达成一致。 这些计算机被称为“节点”。 节点保证所有与区块链交互的人都有相同的数据。 要完成此分布式协议，区块链需要一个共识机制。 以太坊采用权益证明共识机制。 任何想在链上添加新区块的人都必须质押以太币（以太坊原生货币）做为抵押品并运行验证者软件。 接着，可以随机选择这些“验证者”来提出区块，再由其他验证者检查并添加到区块链中。 存在一种奖励和惩罚体系，有力地激励参与者尽可能地诚实和保持在线。
+                                    对区块链最好的描述是将其描述为一个公共数据库，它由网络中的许多计算机更新和共享。 "区块"指的是数据和状态是按顺序批量或"区块"存储的。 如果你向别人发送
+                                    ETH，需要将交易数据添加到一个区块中才算成功。
+                                    "链"指的是每个区块加密引用其父块。 换句话说，区块被链接在一起。 在不改变所有后续区块的情况下，区块内数据是无法改变，但改变后续区块需要整个网络的共识。
+                                    网络中的每台计算机都必须就每个新区块和链达成一致。 这些计算机被称为“节点”。 节点保证所有与区块链交互的人都有相同的数据。
+                                    要完成此分布式协议，区块链需要一个共识机制。 以太坊采用权益证明共识机制。 任何想在链上添加新区块的人都必须质押以太币（以太坊原生货币）做为抵押品并运行验证者软件。
+                                    接着，可以随机选择这些“验证者”来提出区块，再由其他验证者检查并添加到区块链中。 存在一种奖励和惩罚体系，有力地激励参与者尽可能地诚实和保持在线。
                                 </p>
-                                
+
                             </div>
                         </div>
 
@@ -202,13 +208,16 @@ if err != nil {
                                 <p class="card-text">
                                     以太坊是一条区块链，其中嵌入了计算机。 它是以去中心化、无需许可、抗审查的方式构建应用程序和组织的基础。
                                     </br>
-                                    在以太坊宇宙中，有一台规范化计算机（称为以太坊虚拟机，或 EVM），其状态得到以太坊网络中所有人的一致同意。 每个参与以太坊网络的人（每个以太坊节点）都会保存一份该计算机的状态。 此外，任何参与者都可以广播请求这台计算机进行任意计算。 每当广播这样的请求时，网络上的其他参与者就会检查、验证并进行（“执行”）该计算。 该执行会导致以太坊虚拟机的状态变化，并且在整个网络中传播。
+                                    在以太坊宇宙中，有一台规范化计算机（称为以太坊虚拟机，或 EVM），其状态得到以太坊网络中所有人的一致同意。
+                                    每个参与以太坊网络的人（每个以太坊节点）都会保存一份该计算机的状态。 此外，任何参与者都可以广播请求这台计算机进行任意计算。
+                                    每当广播这样的请求时，网络上的其他参与者就会检查、验证并进行（“执行”）该计算。 该执行会导致以太坊虚拟机的状态变化，并且在整个网络中传播。
                                     </br>
                                     计算请求被称为交易请求；所有交易的记录以及以太坊虚拟机的当前状态存储在区块链中，而区块链又由所有节点存储并达成一致。
                                     </br>
-                                    加密机制确保一旦交易被验证为有效并添加到区块链中后，之后就无法被篡改。 同样的机制还确保所有交易都以适当的“权限”签名和执行（除了 Alice 本人，任何人都不能从 Alice 的帐户发送数字资产）。
+                                    加密机制确保一旦交易被验证为有效并添加到区块链中后，之后就无法被篡改。 同样的机制还确保所有交易都以适当的“权限”签名和执行（除了 Alice 本人，任何人都不能从
+                                    Alice 的帐户发送数字资产）。
                                 </p>
-                                
+
                             </div>
                         </div>
 
@@ -217,15 +226,18 @@ if err != nil {
                                 <h5 class="card-title"> <strong>什么是以太币？</strong></h5>
                                 </hr>
                                 <p class="card-text">
-                                    <strong>以太币 (ETH)</strong> 是以太坊上的原生加密货币。 以太币的目的是允许计算市场化。 这种市场为参与者提供了一种经济激励，以验证并执行交易请求，为网络提供计算资源。
+                                    <strong>以太币 (ETH)</strong> 是以太坊上的原生加密货币。 以太币的目的是允许计算市场化。
+                                    这种市场为参与者提供了一种经济激励，以验证并执行交易请求，为网络提供计算资源。
 
                                     任何广播交易请求的参与者还必须向网络提供一定数量的以太币作为奖金。 网络将燃烧部分奖金，并将剩余部分奖励给最终验证、执行交易，将其提交到区块链并广播到网络的任何人。
-                                    
+
                                     支付的以太币数量对应于进行计算所需的资源。 这类奖励也可以阻止恶意参与者通过请求执行无穷计算或其他资源密集型脚本来故意堵塞网络，因为这些参与者必须为计算资源付费。
-                                    
-                                    以太币还用于通过以下三种主要方式为网络提供加密经济安全性：1) 作为一种奖励方式，奖励提议区块或指出其他验证者不诚实行为的验证者；2) 由验证者抵押，作为遏制不诚实行为的抵押品 — 如果验证者试图行为不端，它们的以太币可能会被销毁；3) 用于对新提议的区块的“投票”进行加权，并影响共识机制的分叉选择部分。
+
+                                    以太币还用于通过以下三种主要方式为网络提供加密经济安全性：1) 作为一种奖励方式，奖励提议区块或指出其他验证者不诚实行为的验证者；2)
+                                    由验证者抵押，作为遏制不诚实行为的抵押品 — 如果验证者试图行为不端，它们的以太币可能会被销毁；3)
+                                    用于对新提议的区块的“投票”进行加权，并影响共识机制的分叉选择部分。
                                 </p>
-                                
+
                             </div>
                         </div>
 
@@ -234,45 +246,52 @@ if err != nil {
                                 <h5 class="card-title"> <strong>什么是智能合约？</strong></h5>
                                 </hr>
                                 <p class="card-text">
-                                    实际上，参与者不会每次在以太坊虚拟机上请求计算时都编写新代码。 相反，应用程序开发者将程序（可重用的代码片段）上传到以太坊虚拟机状态，用户发出请求以使用不同参数执行这些代码片段。 我们将这些上传至网络并由网络执行的程序称为智能合约。
+                                    实际上，参与者不会每次在以太坊虚拟机上请求计算时都编写新代码。
+                                    相反，应用程序开发者将程序（可重用的代码片段）上传到以太坊虚拟机状态，用户发出请求以使用不同参数执行这些代码片段。 我们将这些上传至网络并由网络执行的程序称为智能合约。
 
-                                    简单来说，你可以把智能合约想象成一种自动售货机：通过特定参数调用脚本后，如果满足某些特定条件，就会执行一些操作或计算。 例如，如果调用者将以太币发送给特定的接收者，简单的卖方智能合约就可以创建和分配数字资产所有权。
+                                    简单来说，你可以把智能合约想象成一种自动售货机：通过特定参数调用脚本后，如果满足某些特定条件，就会执行一些操作或计算。
+                                    例如，如果调用者将以太币发送给特定的接收者，简单的卖方智能合约就可以创建和分配数字资产所有权。
 
                                     任何开发者都可以创建智能合约，并使用区块链作为其数据层，将其公开给网络，但要向网络支付以太币。 然后，任何用户都可以调用智能合约来执行其代码，并再次向网络支付费用。
 
                                     因此，通过智能合约，开发者可以任意构建和部署面向用户的复杂应用程序和服务，例如市场、金融工具、游戏等。
                                 </p>
-                                
+
                             </div>
                         </div>
 
 
                         <h2>1. 初始化客户端</h2>
-                        
+
                         <div>
-                            <span>参考   <a href="#testConnect" class="link text-info">快速开始/ 初始化客户端</a></span>
+                            <span>参考 <a href="#testConnect" class="link text-info">快速开始/ 初始化客户端</a></span>
                         </div>
 
                         <h2>2. 账户</h2>
 
-                        <p>以太坊上的账户要么是钱包地址要么是智能合约地址。它们看起来像是 0x71c7656ec7ab88b098defb751b7401b5f6d8976f，它们用于将 ETH 发送到另一个用户，并且还用于在需要和区块链交互时指一个智能合约。它们是唯一的，且是从私钥导出的。要使用 go-ethereum 的账户地址，您必须先将它们转化为 go-ethereum 中的 common.Address 类型。</p>
-                    </br>
-                        <p>可以点击以下测试快速测试结果：<label class="text-danger">样例：0x71c7656ec7ab88b098defb751b7401b5f6d8976f</label></p>
-                    </br>
+                        <p>以太坊上的账户要么是钱包地址要么是智能合约地址。它们看起来像是 0x71c7656ec7ab88b098defb751b7401b5f6d8976f，它们用于将 ETH
+                            发送到另一个用户，并且还用于在需要和区块链交互时指一个智能合约。它们是唯一的，且是从私钥导出的。要使用 go-ethereum 的账户地址，您必须先将它们转化为 go-ethereum
+                            中的 common.Address 类型。</p>
+                        </br>
+                        <p>可以点击以下测试快速测试结果：<label
+                                class="text-danger">样例：0x71c7656ec7ab88b098defb751b7401b5f6d8976f</label></p>
+                        </br>
                         <div class="card">
                             <div class="card-body">
                                 <form id="accountForm" action="#">
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">请输入账户地址：</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="accountAddress" value="0x71c7656ec7ab88b098defb751b7401b5f6d8976f">
+                                            <input type="text" class="form-control" id="accountAddress"
+                                                value="0x71c7656ec7ab88b098defb751b7401b5f6d8976f">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-12 col-12 align-items-center justify-content-center">
-                                            <button type="button" class="btn btn-outline-primary col-sm-2" id="accountButton">账户转换</button>
+                                            <button type="button" class="btn btn-outline-primary col-sm-2"
+                                                id="accountButton">账户转换</button>
                                         </div>
-                                       
+
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">HEX:</label>
@@ -297,7 +316,7 @@ if err != nil {
                                 <label class="text-danger"> 注意：转换结果以字符串形式表示</label>
                             </div>
                         </div>
-                        
+
                         <h2>3. 账户余额</h2>
                         <p>一个以太坊帐户是一个具有以太币 (ETH) 余额的实体，可以在以太坊上发送交易。 帐户可以由用户控制，也可以作为智能合约部署。
                         </p>
@@ -309,32 +328,33 @@ if err != nil {
                                     <li class="list-group-item">1. 外部所有的帐户 (EOA) – 由任何拥有私钥的人控制</li>
                                     <li class="list-group-item">2. 合约帐户 – 部署到网络上的智能合约，由代码控制。</li>
                                 </ul>
-                            </br>
+                                </br>
                                 <h5 class="card-title"> <strong>这两种帐户类型都能：</strong></h5>
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item list-group-item-flush">1. 收、持有和发送 ETH 和 token</li>
                                     <li class="list-group-item list-group-item-flush">2. 与已部署的智能合约进行交互。</li>
                                 </ul>
-                            </br>
-                            
-                            <h4 class="card-title"><strong>主要区别</strong></h4>
-                            <h5 class="card-title"> <strong>外部账户</strong></h5>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item list-group-item-flush">1. 创建帐户是免费的</li>
-                                <li class="list-group-item list-group-item-flush">2. 可以发起交易</li>
-                                <li class="list-group-item list-group-item-flush">3. 外部所有的帐户之间只能进行以太币和代币交易</li>
-                                <li class="list-group-item list-group-item-flush">4. 由一对加密密钥组成：控制帐户活动的公钥和私钥</li>
-                            </ul>
-                            <h5 class="card-title"> <strong>合约账户</strong></h5>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item list-group-item-flush">1. 创建合约存在成本，因为需要使用网络存储空间</li>
-                                <li class="list-group-item list-group-item-flush">2. 只能在收到交易时发送交易</li>
-                                <li class="list-group-item list-group-item-flush">3. 从外部帐户向合约帐户发起的交易能触发可执行多种操作的代码，例如转移代币甚至创建新合约</li>
-                                <li class="list-group-item list-group-item-flush">4. 合约帐户没有私钥。 相反，它们由智能合约代码逻辑控制</li>
-                            </ul>
+                                </br>
+
+                                <h4 class="card-title"><strong>主要区别</strong></h4>
+                                <h5 class="card-title"> <strong>外部账户</strong></h5>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item list-group-item-flush">1. 创建帐户是免费的</li>
+                                    <li class="list-group-item list-group-item-flush">2. 可以发起交易</li>
+                                    <li class="list-group-item list-group-item-flush">3. 外部所有的帐户之间只能进行以太币和代币交易</li>
+                                    <li class="list-group-item list-group-item-flush">4. 由一对加密密钥组成：控制帐户活动的公钥和私钥</li>
+                                </ul>
+                                <h5 class="card-title"> <strong>合约账户</strong></h5>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item list-group-item-flush">1. 创建合约存在成本，因为需要使用网络存储空间</li>
+                                    <li class="list-group-item list-group-item-flush">2. 只能在收到交易时发送交易</li>
+                                    <li class="list-group-item list-group-item-flush">3.
+                                        从外部帐户向合约帐户发起的交易能触发可执行多种操作的代码，例如转移代币甚至创建新合约</li>
+                                    <li class="list-group-item list-group-item-flush">4. 合约帐户没有私钥。 相反，它们由智能合约代码逻辑控制</li>
+                                </ul>
                             </div>
                         </div>
-                    </br>
+                        </br>
                         <p>通过以下测试可以快速获取账户信<span> (注意：实际信息为测试网信息)</span></p>
                         <div class="card">
                             <div class="card-body">
@@ -342,27 +362,31 @@ if err != nil {
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">请输入连接地址：</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="accountConnUrl" value="https://cloudflare-eth.com">
+                                            <input type="text" class="form-control" id="accountConnUrl"
+                                                value="https://cloudflare-eth.com">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">请输入账户地址：</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="accountBalanceAddress" value="0x71c7656ec7ab88b098defb751b7401b5f6d8976f">
+                                            <input type="text" class="form-control" id="accountBalanceAddress"
+                                                value="0x71c7656ec7ab88b098defb751b7401b5f6d8976f">
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">请输入区块号：</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="accountBalanceBlock" value="" placeholder="如果不输入则查询最新余额,可用高度5532993">
+                                            <input type="text" class="form-control" id="accountBalanceBlock" value=""
+                                                placeholder="如果不输入则查询最新余额,可用高度5532993">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-12 col-12 align-items-center justify-content-center">
-                                            <button type="button" class="btn btn-outline-primary col-sm-2" id="accountBalanceButton">获取账户信息</button>
+                                            <button type="button" class="btn btn-outline-primary col-sm-2"
+                                                id="accountBalanceButton">获取账户信息</button>
                                         </div>
-                                       
+
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">最新余额（单位：wei）:</label>
@@ -404,28 +428,36 @@ if err != nil {
                         <h2>7. 分层确定性（HD）Wallet</h2>
 
                         <h2>8. 查询区块</h2>
-                        <p>区块是指一批交易的组合，并且包含链中上一个区块的哈希。 这将区块连接在一起（成为一个链），因为哈希是从区块数据中加密得出的。 这可以防止欺诈，因为以前的任何区块中的任何改变都会使后续所有区块无效，而且所有哈希都会改变，所有运行区块链的人都会注意到。</p>
+                        <p>区块是指一批交易的组合，并且包含链中上一个区块的哈希。 这将区块连接在一起（成为一个链），因为哈希是从区块数据中加密得出的。
+                            这可以防止欺诈，因为以前的任何区块中的任何改变都会使后续所有区块无效，而且所有哈希都会改变，所有运行区块链的人都会注意到。</p>
                         </br>
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title"><strong>区块如何工作？</strong></h4>
-                                <p>为了保存交易历史，区块被严格排序（创建的每个新区块都包含一个其父块的引用），区块内的交易也严格排序。 除极少数情况外，在任何特定时间，网络上的所有参与者都同意区块的确切数目和历史， 并且正在努力将当前的活动交易请求分批到下一个区块。</p>
-                            </br>
-                                <p>随机选择的验证者在网络上构建完区块后，该区块将传播到整个网络；所有节点都将该区块添加至其区块链的末尾，然后挑选新的验证者来创建下一个区块。 目前，确切的区块构建过程和提交/共识过程由以太坊的“权益证明”协议规定。</p>
+                                <p>为了保存交易历史，区块被严格排序（创建的每个新区块都包含一个其父块的引用），区块内的交易也严格排序。
+                                    除极少数情况外，在任何特定时间，网络上的所有参与者都同意区块的确切数目和历史， 并且正在努力将当前的活动交易请求分批到下一个区块。</p>
+                                </br>
+                                <p>随机选择的验证者在网络上构建完区块后，该区块将传播到整个网络；所有节点都将该区块添加至其区块链的末尾，然后挑选新的验证者来创建下一个区块。
+                                    目前，确切的区块构建过程和提交/共识过程由以太坊的“权益证明”协议规定。</p>
 
-                        </br>
+                                </br>
                                 <h4 class="card-title"><strong>权益证明协议</strong></h4>
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item list-group-item-flush">1. 验证节点必须向存款合约中质押 32 个以太币，作为抵押品防止发生不良行为。 这有助于保护网络，因为如果发生不诚实活动且可以证实，部分甚至全部质押金额将被销毁</li>
-                                    <li class="list-group-item list-group-item-flush">2. 在每个时隙（12 秒的时间间隔）中，会随机选择一个验证者作为区块提议者。 他们将交易打包并执行，然后确定一个新的“状态”。 他们将这些信息包装到一个区块中并传送给其他验证者。</li>
-                                    <li class="list-group-item list-group-item-flush">3. 其他获悉新区块的验证者再次执行区块中包含的交易，确定他们同意对全局状态提出的修改。 假设该区块是有效的，验证者就将该区块添加进各自的数据库。</li>
-                                    <li class="list-group-item list-group-item-flush">4. 如果验证者获悉在同一时隙内有两个冲突区块，他们会使用自己的分叉选择算法选择获得最多质押以太币支持的那一个区块。</li>
+                                    <li class="list-group-item list-group-item-flush">1. 验证节点必须向存款合约中质押 32
+                                        个以太币，作为抵押品防止发生不良行为。 这有助于保护网络，因为如果发生不诚实活动且可以证实，部分甚至全部质押金额将被销毁</li>
+                                    <li class="list-group-item list-group-item-flush">2. 在每个时隙（12
+                                        秒的时间间隔）中，会随机选择一个验证者作为区块提议者。 他们将交易打包并执行，然后确定一个新的“状态”。 他们将这些信息包装到一个区块中并传送给其他验证者。
+                                    </li>
+                                    <li class="list-group-item list-group-item-flush">3.
+                                        其他获悉新区块的验证者再次执行区块中包含的交易，确定他们同意对全局状态提出的修改。 假设该区块是有效的，验证者就将该区块添加进各自的数据库。</li>
+                                    <li class="list-group-item list-group-item-flush">4.
+                                        如果验证者获悉在同一时隙内有两个冲突区块，他们会使用自己的分叉选择算法选择获得最多质押以太币支持的那一个区块。</li>
                                 </ul>
                             </div>
                         </div>
-                    </br>
+                        </br>
                         <p>一个区块中包含大量信息，包括区块头信息header，和区块的body</p>
-                    </br>
+                        </br>
                         <div class="card">
                             <h5 class="card-title"><strong>区块头信息bloack header</strong></h5>
                             <div class="container">
@@ -446,7 +478,8 @@ if err != nil {
                                         <tr>
                                             <th scope="col">2</th>
                                             <td>proposer_index</td>
-                                            <td>1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111啊啊啊啊啊</td>
+                                            <td>1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111啊啊啊啊啊
+                                            </td>
                                         </tr>
                                         <tr>
                                             <th scope="col">3</th>
@@ -467,59 +500,94 @@ if err != nil {
                                 </table>
                             </div>
                         </div>
-                    </br>
-                        <p class="text-danger">通过以下快速测试可以获取区块信息</p>
+                        </br>
+                        <p class="text-danger">通过以下快速测试可以获取区块头部分信息</p>
                         <div class="card">
                             <div class="card-body">
                                 <form id="blockInfoForm" action="#">
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">请输入测试网地址：</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="blockUrl" value="https://cloudflare-eth.com">
+                                            <input type="text" class="form-control" id="blockUrl"
+                                                value="http://127.0.0.1:8545">
                                         </div>
                                     </div>
-                                   
+
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">请输入区块号：</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="blockNum" value="" placeholder="如果不输入则查询最新的区块信息">
+                                            <input type="text" class="form-control" id="blockNum" value=""
+                                                placeholder="如果不输入则查询最新的区块信息">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-12 col-12 align-items-center justify-content-center">
-                                            <button type="button" class="btn btn-outline-primary col-sm-2" id="blockInfoButton">查询区块</button>
+                                            <button type="button" class="btn btn-outline-primary col-sm-2"
+                                                id="blockInfoButton">查询区块</button>
                                         </div>
-                                       
+
                                     </div>
-                                   
+
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">区块号:</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="weiBalance" value="">
+                                            <input type="text" class="form-control" id="block_number" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">区块号hash:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="block_hash" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">时间戳:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="block_timestamp" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">随机值:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="block_nonce" value="">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">父区块hash:</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="gweiBalance" value="">
+                                            <input type="text" class="form-control" id="block_parentHash" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">状态机hash地址:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="block_stateRoot" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">交易列表hash地址:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="block_transactionsRoot"
+                                                value="">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">区块难度：</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="unDealWeiBalance" value="">
+                                            <input type="text" class="form-control" id="block_difficulty" value="">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">GasLimit：</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="block_gasLimit" value="">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">区块摘要:</label>
+                                        <label class="col-sm-2 col-form-label">GasUsed：</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="unDealGWeiBalance" value="">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">交易列表:</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="unDealGWeiBalance" value="">
+                                            <input type="text" class="form-control" id="block_gasUsed" value="">
                                         </div>
                                     </div>
                                 </form>
@@ -527,259 +595,296 @@ if err != nil {
                             </div>
                         </div>
                         <h2>9. 查询交易</h2>
-                        
+                        <p class="text-danger">在上个章节 我们知道了如何在给定区块编号的情况下读取块及其所有数据。 我们可以通过调用 `Transactions`
+                            方法来读取块中的事务，该方法返回一个 `Transaction` 类型的地址，通过该地址，我们可以获取当前区块的所有交易列表。以下可以快速测试获取交易列表</p>
+                        </br>
 
-                        <h2>10. 转账以太币</h2>
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-header">查询交易列表</h4>
+                                <form id="transactionForm" action="#">
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">请输入测试网地址：</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="transactionUrl"
+                                                value="http://127.0.0.1:8545">
+                                        </div>
+                                    </div>
 
-                        <h2>11. 代币的转账</h2>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">请输入区块号：</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="transactionBlockNum" value=""
+                                                placeholder="如果不输入则查询最新的区块信息">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-12 col-12 align-items-center justify-content-center">
+                                            <button type="button" class="btn btn-outline-primary col-sm-2"
+                                                id="transactionButton">查询交易列表</button>
+                                        </div>
 
-                        <h2>12. 订阅新区块</h2>
+                                    </div>
+                                </form>
 
-                        <h2>13. 构建原始交易</h2>
+                                <table class="table table-bordered" id="transactionTable"></table>
+                            </div>
+                        </div>
 
-
-                        <h2>14. 发送原始交易事务</h2>
-
-                        <h2>15. 智能合约的编译与ABI</h2>
-
-                        <h2>16. 部署智能合约I</h2>
-
-
-                        <h2>17. 加载智能合约</h2>
-
-                        <h2>18. 查询智能合约</h2>
-
-                        <h2>19. 写入智能合约</h2>
-
-                        <h2>20. 读取智能合约的字节码</h2>
-
-                        <h2>21. 订阅事件日志</h2>
-
-                        <h2>22. 读取事件日志</h2>
-
-                        <h2>23. 读取 ERC-20 代币的事件日志</h2>
-
-                        <h2>24. 读取0x Protocol事件日志</h2>
-
-                        <h2>25. 生成签名</h2>
-
-                        <h2>26. 验证签名</h2>
-
-                        <h2>27. 使用模拟客户端</h2>
+                 
 
 
-                        <h1>Go Eth源码解析</h1>
 
-                        <!----------------------------------------------------------------------
+                    <h2>10. 转账以太币</h2>
+
+                    <h2>11. 代币的转账</h2>
+
+                    <h2>12. 订阅新区块</h2>
+
+                    <h2>13. 构建原始交易</h2>
+
+
+                    <h2>14. 发送原始交易事务</h2>
+
+                    <h2>15. 智能合约的编译与ABI</h2>
+
+                    <h2>16. 部署智能合约I</h2>
+
+
+                    <h2>17. 加载智能合约</h2>
+
+                    <h2>18. 查询智能合约</h2>
+
+                    <h2>19. 写入智能合约</h2>
+
+                    <h2>20. 读取智能合约的字节码</h2>
+
+                    <h2>21. 订阅事件日志</h2>
+
+                    <h2>22. 读取事件日志</h2>
+
+                    <h2>23. 读取 ERC-20 代币的事件日志</h2>
+
+                    <h2>24. 读取0x Protocol事件日志</h2>
+
+                    <h2>25. 生成签名</h2>
+
+                    <h2>26. 验证签名</h2>
+
+                    <h2>27. 使用模拟客户端</h2>
+
+
+                    <h1>Go Eth源码解析</h1>
+
+                    <!----------------------------------------------------------------------
  colors
 ------------------------------------------------------------------------>
 
-                        <h2>颜色</h2>
+                    <h2>颜色</h2>
 
-                        <div class="alert alert-dark mb-5">
-                            Options:
-                            <ul>
-                                <li>Background: <code>bg-*color</code></li>
-                                <li>Text: <code>text-*color</code></li>
-                                <li>Alert: <code>alert-*color</code></li>
-                                <li>Button: <code>btn-*color</code></li>
-                                <li>Badge: <code>badge-*color</code></li>
-                            </ul>
-                        </div>
+                    <div class="alert alert-dark mb-5">
+                        Options:
+                        <ul>
+                            <li>Background: <code>bg-*color</code></li>
+                            <li>Text: <code>text-*color</code></li>
+                            <li>Alert: <code>alert-*color</code></li>
+                            <li>Button: <code>btn-*color</code></li>
+                            <li>Badge: <code>badge-*color</code></li>
+                        </ul>
+                    </div>
 
-                        <div class="d-flex text-white align-items-center h-100 text-center">
-                            <div class="col-md-4 bg-primary p-5" style="height:130px;">
-                                <h5>Primary</h5>
-                            </div>
-                            <div class="col-md-4 bg-secondary p-5" style="height:130px;">
-                                <h5>Secondary</h5>
-                            </div>
-                            <div class="col-md-4 bg-info p-5" style="height:130px;">
-                                <h5>Info</h5>
-                            </div>
+                    <div class="d-flex text-white align-items-center h-100 text-center">
+                        <div class="col-md-4 bg-primary p-5" style="height:130px;">
+                            <h5>Primary</h5>
                         </div>
-                        <div class="d-flex text-white align-items-center h-100 text-center">
-                            <div class="col-md-4 bg-lightblue p-5 border border-left-0 border-top-0"
-                                style="height:130px;">
-                                <h5 class="text-dark">Light Blue</h5>
-                            </div>
-                            <div class="col-md-4 bg-warning p-5" style="height:130px;">
-                                <h5>Warning</h5>
-                            </div>
-                            <div class="col-md-4 bg-danger p-5" style="height:130px;">
-                                <h5>Danger</h5>
-                            </div>
+                        <div class="col-md-4 bg-secondary p-5" style="height:130px;">
+                            <h5>Secondary</h5>
                         </div>
-                        <div class="d-flex text-white align-items-center h-100 text-center">
-                            <div class="col-md-4 bg-purple p-5" style="height:130px;">
-                                <h5>Purple</h5>
-                            </div>
-                            <div class="col-md-4 bg-black p-5" style="height:130px;">
-                                <h5>Black</h5>
-                            </div>
-                            <div class="col-md-4 bg-cyan p-5" style="height:130px;">
-                                <h5>Cyan</h5>
-                            </div>
+                        <div class="col-md-4 bg-info p-5" style="height:130px;">
+                            <h5>Info</h5>
                         </div>
+                    </div>
+                    <div class="d-flex text-white align-items-center h-100 text-center">
+                        <div class="col-md-4 bg-lightblue p-5 border border-left-0 border-top-0" style="height:130px;">
+                            <h5 class="text-dark">Light Blue</h5>
+                        </div>
+                        <div class="col-md-4 bg-warning p-5" style="height:130px;">
+                            <h5>Warning</h5>
+                        </div>
+                        <div class="col-md-4 bg-danger p-5" style="height:130px;">
+                            <h5>Danger</h5>
+                        </div>
+                    </div>
+                    <div class="d-flex text-white align-items-center h-100 text-center">
+                        <div class="col-md-4 bg-purple p-5" style="height:130px;">
+                            <h5>Purple</h5>
+                        </div>
+                        <div class="col-md-4 bg-black p-5" style="height:130px;">
+                            <h5>Black</h5>
+                        </div>
+                        <div class="col-md-4 bg-cyan p-5" style="height:130px;">
+                            <h5>Cyan</h5>
+                        </div>
+                    </div>
 
-                        <!----------------------------------------------------------------------
+                    <!----------------------------------------------------------------------
 alerts
 ------------------------------------------------------------------------>
-                        <h2>弹窗</h2>
+                    <h2>弹窗</h2>
 
-                        <div class="alert alert-dark mb-5">
-                            Options:
-                            <ul>
-                                <li>Background: <code>alert-*color</code></li>
-                                <li>Text: <code>text-*color</code></li>
-                                <li>Shadow: <code>shadow</code>, <code>shadow-sm</code>, <code>shadow-lg</code></li>
-                            </ul>
-                        </div>
+                    <div class="alert alert-dark mb-5">
+                        Options:
+                        <ul>
+                            <li>Background: <code>alert-*color</code></li>
+                            <li>Text: <code>text-*color</code></li>
+                            <li>Shadow: <code>shadow</code>, <code>shadow-sm</code>, <code>shadow-lg</code></li>
+                        </ul>
+                    </div>
 
-                        <div class="row mb-4">
-                            <div class="col-md-6">
-                                <div class="alert alert-primary shadow-lg" role="alert">
-                                    A simple primary alert-check it out!
-                                </div>
-                                <div class="alert alert-secondary" role="alert">
-                                    A simple secondary alert-check it out!
-                                </div>
-                                <div class="alert alert-success" role="alert">
-                                    A simple success alert-check it out!
-                                </div>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="alert alert-primary shadow-lg" role="alert">
+                                A simple primary alert-check it out!
                             </div>
-                            <div class="col-md-6">
-                                <div class="alert alert-danger" role="alert">
-                                    <i class="fas fa-bullhorn"></i> A simple danger alert-check it out! <button
-                                        type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">×</span>
-                                    </button>
-                                </div>
-                                <div class="alert alert-warning" role="alert">
-                                    A simple warning alert-check it out!
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">×</span>
-                                    </button>
-                                </div>
-                                <div class="alert alert-info" role="alert">
-                                    A simple info alert-check it out! <button type="button" class="close"
-                                        data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">×</span>
-                                    </button>
-                                </div>
+                            <div class="alert alert-secondary" role="alert">
+                                A simple secondary alert-check it out!
+                            </div>
+                            <div class="alert alert-success" role="alert">
+                                A simple success alert-check it out!
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="alert alert-danger" role="alert">
+                                <i class="fas fa-bullhorn"></i> A simple danger alert-check it out! <button
+                                    type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="alert alert-warning" role="alert">
+                                A simple warning alert-check it out!
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="alert alert-info" role="alert">
+                                A simple info alert-check it out! <button type="button" class="close"
+                                    data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
 
-                        <script type="text/plain" class="language-markup"><div class="alert alert-primary shadow-lg" role="alert">
+                    <script type="text/plain" class="language-markup"><div class="alert alert-primary shadow-lg" role="alert">
     A simple primary alert-check it out!
 </div></script>
 
-                        <script type="text/plain" class="language-markup"><div class="alert alert-danger" role="alert">
+                    <script type="text/plain" class="language-markup"><div class="alert alert-danger" role="alert">
     <i class="fas fa-bullhorn"></i> A simple danger alert-check it out! <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">×</span>
     </button>
 </div></script>
 
 
-                        <!----------------------------------------------------------------------
+                    <!----------------------------------------------------------------------
 avatars
 ------------------------------------------------------------------------>
 
-                        <h2>Avatars</h2>
+                    <h2>Avatars</h2>
 
-                        <div class="alert alert-dark mb-5">
-                            Options:
-                            <ul>
-                                <li>Round: <code>rounded-circle</code></li>
-                                <li>Size: <code>width="*"</code></li>
-                                <li>Shadow: <code>shadow</code>, <code>shadow-sm</code>, <code>shadow-lg</code></li>
-                            </ul>
-                        </div>
+                    <div class="alert alert-dark mb-5">
+                        Options:
+                        <ul>
+                            <li>Round: <code>rounded-circle</code></li>
+                            <li>Size: <code>width="*"</code></li>
+                            <li>Shadow: <code>shadow</code>, <code>shadow-sm</code>, <code>shadow-lg</code></li>
+                        </ul>
+                    </div>
 
-                        <div class="mb-3">
-                            <img class="rounded-circle shadow" src="../../asserts/image/demo/avatar2.jpg" width="50">
-                            <img class="rounded-circle shadow" src="../../asserts/image/demo/avatar2.jpg" width="70">
-                            <img class="rounded-circle shadow" src="../../asserts/image/demo/avatar2.jpg" width="90">
-                        </div>
+                    <div class="mb-3">
+                        <img class="rounded-circle shadow" src="../../asserts/image/demo/avatar2.jpg" width="50">
+                        <img class="rounded-circle shadow" src="../../asserts/image/demo/avatar2.jpg" width="70">
+                        <img class="rounded-circle shadow" src="../../asserts/image/demo/avatar2.jpg" width="90">
+                    </div>
 
-                        <script type="text/plain" class="language-markup"><img class="rounded-circle shadow" src="../../asserts/image/demo/avatar2.jpg" width="50">
+                    <script type="text/plain" class="language-markup"><img class="rounded-circle shadow" src="../../asserts/image/demo/avatar2.jpg" width="50">
 <img class="rounded-circle shadow" src="../../asserts/image/demo/avatar2.jpg" width="70">
 <img class="rounded-circle shadow" src="../../asserts/image/demo/avatar2.jpg" width="90">
 </script>
 
-                        <!----------------------------------------------------------------------
+                    <!----------------------------------------------------------------------
 badges
 ------------------------------------------------------------------------>
-                        <h2>Badges</h2>
+                    <h2>Badges</h2>
 
-                        <div class="alert alert-dark mb-5">
-                            Options:
-                            <ul>
-                                <li>Background: <code>badge-*color</code></li>
-                                <li>Text: <code>text-*color</code></li>
-                                <li>Shadow: <code>shadow</code>, <code>shadow-sm</code>, <code>shadow-lg</code></li>
-                            </ul>
+                    <div class="alert alert-dark mb-5">
+                        Options:
+                        <ul>
+                            <li>Background: <code>badge-*color</code></li>
+                            <li>Text: <code>text-*color</code></li>
+                            <li>Shadow: <code>shadow</code>, <code>shadow-sm</code>, <code>shadow-lg</code></li>
+                        </ul>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="badge badge-pill badge-primary">Primary</span>
+                            <span class="badge badge-pill badge-secondary">Secondary</span>
+                            <span class="badge badge-pill badge-success">Success</span>
+                            <span class="badge badge-pill badge-danger">Danger</span>
+                            <span class="badge badge-pill badge-warning">Warning</span>
+                            <span class="badge badge-pill badge-info">Info</span>
+                            <a class="btn btn-primary" href="#">
+                                Profile <span class="badge badge-warning ml-2">15%</span>
+                            </a>
                         </div>
+                    </div>
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <span class="badge badge-pill badge-primary">Primary</span>
-                                <span class="badge badge-pill badge-secondary">Secondary</span>
-                                <span class="badge badge-pill badge-success">Success</span>
-                                <span class="badge badge-pill badge-danger">Danger</span>
-                                <span class="badge badge-pill badge-warning">Warning</span>
-                                <span class="badge badge-pill badge-info">Info</span>
-                                <a class="btn btn-primary" href="#">
-                                    Profile <span class="badge badge-warning ml-2">15%</span>
-                                </a>
-                            </div>
-                        </div>
-
-                        <script type="text/plain" class="language-markup"><span class="badge badge-pill badge-primary">Primary</span>
+                    <script type="text/plain" class="language-markup"><span class="badge badge-pill badge-primary">Primary</span>
 </script>
 
-                        <script type="text/plain" class="language-markup">
+                    <script type="text/plain" class="language-markup">
                             <a class="btn btn-primary" href="#">Profile <span class="badge badge-warning ml-2">15%</span></a>
                         </script>
 
 
-                        <!----------------------------------------------------------------------
+                    <!----------------------------------------------------------------------
 buttons
 ------------------------------------------------------------------------>
-                        <h2>Buttons</h2>
+                    <h2>Buttons</h2>
 
-                        <div class="alert alert-dark mb-5">
-                            Options
-                            <ul>
-                                <li>Background: <code>btn-*color</code></li>
-                                <li>Text: <code>text-*color</code></li>
-                                <li>Size: <code>btn-sm</code>, <code>btn</code>, <code>btn-lg</code></li>
-                                <li>Outline: <code>btn-outline-*color</code></li>
-                                <li>Round: <code>btn-round</code></li>
-                                <li>Width: <code>btn-block w-100</code></li>
-                                <li>Shadow: <code>shadow</code>, <code>shadow-sm</code>, <code>shadow-lg</code></li>
-                            </ul>
+                    <div class="alert alert-dark mb-5">
+                        Options
+                        <ul>
+                            <li>Background: <code>btn-*color</code></li>
+                            <li>Text: <code>text-*color</code></li>
+                            <li>Size: <code>btn-sm</code>, <code>btn</code>, <code>btn-lg</code></li>
+                            <li>Outline: <code>btn-outline-*color</code></li>
+                            <li>Round: <code>btn-round</code></li>
+                            <li>Width: <code>btn-block w-100</code></li>
+                            <li>Shadow: <code>shadow</code>, <code>shadow-sm</code>, <code>shadow-lg</code></li>
+                        </ul>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-3">
+                            <a href="#" class="btn btn-block btn-primary mb-2">Default</a>
                         </div>
 
-                        <div class="row mb-4">
-                            <div class="col-md-3">
-                                <a href="#" class="btn btn-block btn-primary mb-2">Default</a>
-                            </div>
-
-                            <div class="col">
-                                <a href="#" class="btn btn-block btn-outline-primary mb-2">Outline</a>
-                            </div>
-
-                            <div class="col">
-                                <a href="#" class="btn btn-block btn-primary btn-round mb-2 shadow-lg">Round</a>
-                            </div>
-
-                            <div class="col">
-                                <a href="#" class="btn btn-block btn-outline-primary btn-round mb-2">Outline</a>
-                            </div>
+                        <div class="col">
+                            <a href="#" class="btn btn-block btn-outline-primary mb-2">Outline</a>
                         </div>
 
-                        <script type="text/plain" class="language-markup"><a href="#" class="btn btn-primary">Default</a>
+                        <div class="col">
+                            <a href="#" class="btn btn-block btn-primary btn-round mb-2 shadow-lg">Round</a>
+                        </div>
+
+                        <div class="col">
+                            <a href="#" class="btn btn-block btn-outline-primary btn-round mb-2">Outline</a>
+                        </div>
+                    </div>
+
+                    <script type="text/plain" class="language-markup"><a href="#" class="btn btn-primary">Default</a>
 <a href="#" class="btn btn-outline-primary">Outline</a>
 <a href="#" class="btn btn-primary btn-round shadow-lg">Round</a>
 <a href="#" class="btn btn-outline-primary btn-round">Outline Round</a>
@@ -787,24 +892,24 @@ buttons
 
 
 
-                        <!----------------------------------------------------------------------
+                    <!----------------------------------------------------------------------
 carousel
 ------------------------------------------------------------------------>
 
-                        <h2>Carousel</h2>
+                    <h2>Carousel</h2>
 
-                        <div class="alert alert-dark mb-5">
-                            Options
-                            <ul>
-                                <li>Shadow: <code>shadow</code>, <code>shadow-sm</code>, <code>shadow-lg</code></li>
-                                <li>Rounded: <code>rounded</code></li>
-                            </ul>
-                        </div>
+                    <div class="alert alert-dark mb-5">
+                        Options
+                        <ul>
+                            <li>Shadow: <code>shadow</code>, <code>shadow-sm</code>, <code>shadow-lg</code></li>
+                            <li>Rounded: <code>rounded</code></li>
+                        </ul>
+                    </div>
 
-                        <div class="alert alert-dark mb-5">
-                            Images with non-equal heights may cause a jump effect. Here's the call for a smooth
-                            transition:
-                            <code> $('.carousel').on('slide.bs.carousel', function (event) {
+                    <div class="alert alert-dark mb-5">
+                        Images with non-equal heights may cause a jump effect. Here's the call for a smooth
+                        transition:
+                        <code> $('.carousel').on('slide.bs.carousel', function (event) {
                                 var height = $(event.relatedTarget).height();
                                 var $innerCarousel = $(event.target).find('.carousel-inner');
                                 $innerCarousel.animate({
@@ -812,42 +917,39 @@ carousel
                                 });
                                 });
                             </code>
-                        </div>
+                    </div>
 
-                        <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel">
-                            <ol class="carousel-indicators">
-                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                            </ol>
-                            <div class="carousel-inner shadow-sm rounded">
-                                <div class="carousel-item active">
-                                    <img class="d-block w-100" src="../../asserts/image/demo/slide1.jpg"
-                                        alt="First slide">
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h5>Mountains, Nature Collection</h5>
-                                    </div>
+                    <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner shadow-sm rounded">
+                            <div class="carousel-item active">
+                                <img class="d-block w-100" src="../../asserts/image/demo/slide1.jpg" alt="First slide">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>Mountains, Nature Collection</h5>
                                 </div>
-                                <div class="carousel-item">
-                                    <img class="d-block w-100" src="../../asserts/image/demo/slide2.jpg"
-                                        alt="Second slide">
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h5>Freedom, Sea Collection</h5>
-                                    </div>
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="../../asserts/image/demo/slide2.jpg" alt="Second slide">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>Freedom, Sea Collection</h5>
                                 </div>
-                                <div class="carousel-item">
-                                    <img class="d-block w-100" src="../../asserts/image/demo/slide3.jpg"
-                                        alt="Third slide">
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h5>Living the Dream, Lost Island</h5>
-                                    </div>
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="../../asserts/image/demo/slide3.jpg" alt="Third slide">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>Living the Dream, Lost Island</h5>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <br />
+                    <br />
 
-                        <script type="text/plain" class="language-markup"><div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel">
+                    <script type="text/plain" class="language-markup"><div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel">
 <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -877,36 +979,36 @@ carousel
 
 
 
-                        <!----------------------------------------------------------------------
+                    <!----------------------------------------------------------------------
 forms
 ------------------------------------------------------------------------>
 
-                        <h2>Forms</h2>
+                    <h2>Forms</h2>
 
-                        <div class="alert alert-dark mb-5">
-                            Options
-                            <ul>
-                                <li>Rounded: <code>input-round</code></li>
-                            </ul>
+                    <div class="alert alert-dark mb-5">
+                        Options
+                        <ul>
+                            <li>Rounded: <code>input-round</code></li>
+                        </ul>
+                    </div>
+
+                    <p><b>Inline Form</b></p>
+
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" class="form-control input-round" placeholder="First name">
                         </div>
-
-                        <p><b>Inline Form</b></p>
-
-                        <div class="row">
-                            <div class="col">
-                                <input type="text" class="form-control input-round" placeholder="First name">
-                            </div>
-                            <div class="col">
-                                <input type="text" class="form-control input-round" placeholder="Last name">
-                            </div>
-                            <div class="col">
-                                <button type="submit" class="btn btn-primary btn-round">Subscribe</button>
-                            </div>
+                        <div class="col">
+                            <input type="text" class="form-control input-round" placeholder="Last name">
                         </div>
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary btn-round">Subscribe</button>
+                        </div>
+                    </div>
 
-                        <br />
+                    <br />
 
-                        <script type="text/plain" class="language-markup"><div class="row">
+                    <script type="text/plain" class="language-markup"><div class="row">
     <div class="col">
         <input type="text" class="form-control input-round" placeholder="First name">
     </div>
@@ -918,33 +1020,33 @@ forms
     </div>
 </div></script>
 
-                        <br />
+                    <br />
 
-                        <p><b>Sign Up Form</b></p>
+                    <p><b>Sign Up Form</b></p>
 
-                        <div class="col-md-4">
-                            <form>
-                                <div class="form-group">
-                                    <input type="email" class="form-control" id="exampleInputEmail1"
-                                        aria-describedby="emailHelp" placeholder="Enter email" required="">
-                                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with
-                                        anyone else.</small>
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control" id="exampleInputPassword1"
-                                        placeholder="Password" required="">
-                                </div>
-                                <div class="form-group form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                                </div>
-                                <button type="submit" class="btn btn-success btn-round d-block w-100">Sign in</button>
-                            </form>
-                        </div>
+                    <div class="col-md-4">
+                        <form>
+                            <div class="form-group">
+                                <input type="email" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="Enter email" required="">
+                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with
+                                    anyone else.</small>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="exampleInputPassword1"
+                                    placeholder="Password" required="">
+                            </div>
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                            </div>
+                            <button type="submit" class="btn btn-success btn-round d-block w-100">Sign in</button>
+                        </form>
+                    </div>
 
-                        <br />
+                    <br />
 
-                        <script type="text/plain" class="language-markup"><form>
+                    <script type="text/plain" class="language-markup"><form>
 <div class="form-group">
     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required="">
     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
@@ -959,27 +1061,27 @@ forms
 <button type="submit" class="btn btn-success btn-round">Sign in</button>
 </form></script>
 
-                        <br />
+                    <br />
 
-                        <p><b>Contact Form</b></p>
-                        <form>
-                            <div class="row form-group">
-                                <div class="col">
-                                    <input type="text" class="form-control" placeholder="First name">
-                                </div>
-                                <div class="col">
-                                    <input type="text" class="form-control" placeholder="Last name">
-                                </div>
+                    <p><b>Contact Form</b></p>
+                    <form>
+                        <div class="row form-group">
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="First name">
                             </div>
-                            <div class="form-group">
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="6"></textarea>
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="Last name">
                             </div>
-                            <button type="submit" class="btn btn-primary btn-round">Submit</button>
-                        </form>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="6"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-round">Submit</button>
+                    </form>
 
-                        <br />
+                    <br />
 
-                        <script type="text/plain" class="language-markup"><form>
+                    <script type="text/plain" class="language-markup"><form>
 <div class="row form-group">
     <div class="col">
         <input type="text" class="form-control" placeholder="First name">
@@ -996,427 +1098,427 @@ forms
 
 
 
-                        <!----------------------------------------------------------------------
+                    <!----------------------------------------------------------------------
 icons
 ------------------------------------------------------------------------>
 
-                        <h2>Icons</h2>
-                        <p>Anchor UI Kit comes with latest Font Awesome, the web’s most popular icon set and toolkit. <a
-                                target="_blank" href="https://fontawesome.com/icons?d=gallery">Here</a> are all the
-                            available icons.</p>
+                    <h2>Icons</h2>
+                    <p>Anchor UI Kit comes with latest Font Awesome, the web’s most popular icon set and toolkit. <a
+                            target="_blank" href="https://fontawesome.com/icons?d=gallery">Here</a> are all the
+                        available icons.</p>
 
-                        <div class="alert alert-dark mt-5 mb-5">
-                            Simple Icon Options
-                            <ul>
-                                <li>Color: <code>text-*color</code></li>
-                                <li>Size: <code>fa-2x</code>, <code>fa-3x</code></li>
-                            </ul>
-                        </div>
+                    <div class="alert alert-dark mt-5 mb-5">
+                        Simple Icon Options
+                        <ul>
+                            <li>Color: <code>text-*color</code></li>
+                            <li>Size: <code>fa-2x</code>, <code>fa-3x</code></li>
+                        </ul>
+                    </div>
 
-                        <div class="alert alert-dark mb-5">
-                            Bordered Icon Options
-                            <ul>
-                                <li>Color: <code>text-*color</code></li>
-                                <li>Size: <code>iconsmall</code>, <code>iconmedium</code>, <code>iconlarge</code></li>
-                                <li>Circle: <code>rounded-circle</code></li>
-                                <li>Shadow: <code>shadow</code>, <code>shadow-sm</code>, <code>shadow-lg</code></li>
-                            </ul>
-                        </div>
+                    <div class="alert alert-dark mb-5">
+                        Bordered Icon Options
+                        <ul>
+                            <li>Color: <code>text-*color</code></li>
+                            <li>Size: <code>iconsmall</code>, <code>iconmedium</code>, <code>iconlarge</code></li>
+                            <li>Circle: <code>rounded-circle</code></li>
+                            <li>Shadow: <code>shadow</code>, <code>shadow-sm</code>, <code>shadow-lg</code></li>
+                        </ul>
+                    </div>
 
-                        <div class="alert alert-dark mb-5">
-                            Background Fill Icon Options
-                            <ul>
-                                <li>Background: <code>bg-*color</code></li>
-                                <li>Size: <code>iconsmall</code>, <code>iconmedium</code>, <code>iconlarge</code></li>
-                                <li>Circle: <code>rounded-circle</code></li>
-                                <li>Shadow: <code>shadow</code>, <code>shadow-sm</code>, <code>shadow-lg</code></li>
-                            </ul>
-                        </div>
+                    <div class="alert alert-dark mb-5">
+                        Background Fill Icon Options
+                        <ul>
+                            <li>Background: <code>bg-*color</code></li>
+                            <li>Size: <code>iconsmall</code>, <code>iconmedium</code>, <code>iconlarge</code></li>
+                            <li>Circle: <code>rounded-circle</code></li>
+                            <li>Shadow: <code>shadow</code>, <code>shadow-sm</code>, <code>shadow-lg</code></li>
+                        </ul>
+                    </div>
 
-                        <p><i class="fas fa-chart-line mr-2"></i> <i class="fas fa-chart-line fa-2x mr-2"></i> <i
-                                class="fas fa-chart-line fa-3x"></i></p>
+                    <p><i class="fas fa-chart-line mr-2"></i> <i class="fas fa-chart-line fa-2x mr-2"></i> <i
+                            class="fas fa-chart-line fa-3x"></i></p>
 
-                        <script type="text/plain" class="language-markup"><!-- icon sizes -->
-                            <i class="fas fa-chart-line"></i>
-                            <i class="fas fa-chart-line fa-2x"></i>
-                            <i class="fas fa-chart-line fa-3x"></i></script>
-                        <br />
+                    <script type="text/plain" class="language-markup"><!-- icon sizes -->
+                    <i class="fas fa-chart-line"></i>
+                    <i class="fas fa-chart-line fa-2x"></i>
+                    <i class="fas fa-chart-line fa-3x"></i>
+                    </script>
+                    <br />
 
-                        <p>Bordered Icons:</p>
+                    <p>Bordered Icons:</p>
 
-                        <p>
-                            <span class="iconbox iconsmall rounded-circle text-primary"><i
-                                    class="fab fa-facebook-f"></i></span>
-                            <span class="iconbox iconmedium rounded-circle text-info"><i
-                                    class="fab fa-twitter"></i></span>
-                            <span class="iconbox iconlarge rounded-circle text-danger"><i
-                                    class="fab fa-google"></i></span>
-                        </p>
+                    <p>
+                        <span class="iconbox iconsmall rounded-circle text-primary"><i
+                                class="fab fa-facebook-f"></i></span>
+                        <span class="iconbox iconmedium rounded-circle text-info"><i class="fab fa-twitter"></i></span>
+                        <span class="iconbox iconlarge rounded-circle text-danger"><i class="fab fa-google"></i></span>
+                    </p>
 
-                        <script type="text/plain" class="language-markup"><!-- bordered icons -->
-                            <span class="iconbox iconsmall rounded-circle text-primary"><i
-                                    class="fab fa-facebook-f"></i></span>
-                            <span class="iconbox iconmedium rounded-circle text-info"><i
-                                    class="fab fa-twitter"></i></span>
-                            <span class="iconbox iconlarge rounded-circle text-danger"><i
-                                    class="fab fa-google"></i></span></script>
+                    <script type="text/plain" class="language-markup"><!-- bordered icons -->
+                    <span class="iconbox iconsmall rounded-circle text-primary"><i class="fab fa-facebook-f"></i></span>
+                    <span class="iconbox iconmedium rounded-circle text-info"><i class="fab fa-twitter"></i></span>
+                    <span class="iconbox iconlarge rounded-circle text-danger"><i class="fab fa-google"></i></span>
+                    </script>
 
-                        <br />
+                    <br />
 
-                        <p>Background Icons:</p>
+                    <p>Background Icons:</p>
 
-                        <p>
-                            <span class="iconbox iconsmall rounded-circle bg-primary text-white shadow border-0"><i
-                                    class="fas fa-cart-arrow-down"></i></span>
-                            <span class="iconbox iconmedium rounded-circle bg-warning text-white shadow border-0"><i
-                                    class="fas fa-coffee"></i></span>
-                            <span class="iconbox iconlarge rounded-circle bg-success text-white shadow border-0"><i
-                                    class="fa fa-book-reader"></i></span>
-                        </p>
+                    <p>
+                        <span class="iconbox iconsmall rounded-circle bg-primary text-white shadow border-0"><i
+                                class="fas fa-cart-arrow-down"></i></span>
+                        <span class="iconbox iconmedium rounded-circle bg-warning text-white shadow border-0"><i
+                                class="fas fa-coffee"></i></span>
+                        <span class="iconbox iconlarge rounded-circle bg-success text-white shadow border-0"><i
+                                class="fa fa-book-reader"></i></span>
+                    </p>
 
-                        <script type="text/plain" class="language-markup"><!-- background icons -->
-                            <span class="iconbox iconsmall rounded-circle bg-primary text-white shadow border-0"><i
-                                    class="fas fa-cart-arrow-down"></i></span>
-                            <span class="iconbox iconmedium rounded-circle bg-warning text-white shadow border-0"><i
-                                    class="fas fa-coffee"></i></span>
-                            <span class="iconbox iconlarge rounded-circle bg-success text-white shadow border-0"><i
-                                    class="fa fa-book-reader"></i></span></script>
+                    <script type="text/plain" class="language-markup"><!-- background icons -->
+                    <span class="iconbox iconsmall rounded-circle bg-primary text-white shadow border-0"><i
+                            class="fas fa-cart-arrow-down"></i></span>
+                    <span class="iconbox iconmedium rounded-circle bg-warning text-white shadow border-0"><i
+                            class="fas fa-coffee"></i></span>
+                    <span class="iconbox iconlarge rounded-circle bg-success text-white shadow border-0"><i
+                            class="fa fa-book-reader"></i></span>
+                    </script>
 
-                        <!----------------------------------------------------------------------
+                    <!----------------------------------------------------------------------
 modals
 ------------------------------------------------------------------------>
 
-                        <h2>Modals</h2>
-                        <p><button type="button" class="btn btn-primary w-100" data-toggle="modal"
-                                data-target="#exampleModalCenter">
-                                Basic vertical center </button></p>
+                    <h2>Modals</h2>
+                    <p><button type="button" class="btn btn-primary w-100" data-toggle="modal"
+                            data-target="#exampleModalCenter">
+                            Basic vertical center </button></p>
 
-                        <!-- Modal Type 1 -->
-                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header border-0">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="pb-4 pr-4 pl-4 text-center">
-                                            <h3 class="heading mt-4">Basic Modal</h3>
-                                            <p>
-                                                Do not keep silent when your own ideas and values are being attacked. If
-                                                a dictatorship ever comes to this country, it will be by the fault of
-                                                those who keep silent.
-                                            </p>
-                                            <p>
-                                                <em class="text-muted">You can add any HTML in the body.</em>
-                                            </p>
-                                        </div>
+                    <!-- Modal Type 1 -->
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header border-0">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="pb-4 pr-4 pl-4 text-center">
+                                        <h3 class="heading mt-4">Basic Modal</h3>
+                                        <p>
+                                            Do not keep silent when your own ideas and values are being attacked. If
+                                            a dictatorship ever comes to this country, it will be by the fault of
+                                            those who keep silent.
+                                        </p>
+                                        <p>
+                                            <em class="text-muted">You can add any HTML in the body.</em>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
 
-                        <script type="text/plain" class="language-markup"><!-- button triggering modal -->
-                            <button type="button" class="btn btn-primary w-100" data-toggle="modal"
-                                data-target="#exampleModalCenter">
-                                Basic vertical center </button>
+                    <script type="text/plain" class="language-markup"><!-- button triggering modal -->
+                    <button type="button" class="btn btn-primary w-100" data-toggle="modal"
+                        data-target="#exampleModalCenter">
+                        Basic vertical center </button>
 
-                            <!-- The modal itself -->
-                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-                                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header border-0">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">×</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="pb-4 pr-4 pl-4 text-center">
-                                                <img src="asserts/image/favicon.ico">
-                                                <h3 class="heading mt-4">Basic Modal</h3>
-                                                <p>
-                                                    Do not keep silent when your own ideas and values are being
-                                                    attacked. If a dictatorship ever comes to this country, it will be
-                                                    by the fault of those who keep silent.
-                                                </p>
-                                                <p>
-                                                    <em class="text-muted">You can add any HTML in the body.</em>
-                                                </p>
-                                            </div>
-                                        </div>
+                    <!-- The modal itself -->
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header border-0">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="pb-4 pr-4 pl-4 text-center">
+                                        <img src="asserts/image/favicon.ico">
+                                        <h3 class="heading mt-4">Basic Modal</h3>
+                                        <p>
+                                            Do not keep silent when your own ideas and values are being
+                                            attacked. If a dictatorship ever comes to this country, it will be
+                                            by the fault of those who keep silent.
+                                        </p>
+                                        <p>
+                                            <em class="text-muted">You can add any HTML in the body.</em>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
-                        </script>
+                        </div>
+                    </div>
+                    </script>
 
 
 
-                        <!----------------------------------------------------------------------
+                    <!----------------------------------------------------------------------
 pagination
 ------------------------------------------------------------------------>
 
-                        <h2>Pagination</h2>
+                    <h2>Pagination</h2>
 
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                <li class="page-item"><a class="page-link" href="#"><i
-                                            class="fas fa-angle-left"></i></a></li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                <li class="page-item"><a class="page-link" href="#">6</a></li>
-                                <li class="page-item"><a class="page-link" href="#"><i
-                                            class="fas fa-angle-right"></i></a></li>
-                            </ul>
-                        </nav>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-left"></i></a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">4</a></li>
+                            <li class="page-item"><a class="page-link" href="#">5</a></li>
+                            <li class="page-item"><a class="page-link" href="#">6</a></li>
+                            <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-right"></i></a>
+                            </li>
+                        </ul>
+                    </nav>
 
 
-                        <script type="text/plain" class="language-markup"><!-- pagination -->
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination">
-                                    <li class="page-item"><a class="page-link" href="#"><i
-                                                class="fas fa-angle-left"></i></a></li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                    <li class="page-item"><a class="page-link" href="#"><i
-                                                class="fas fa-angle-right"></i></a></li>
-                                </ul>
-                            </nav>
-                        </script>
+                    <script type="text/plain" class="language-markup"><!-- pagination -->
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-left"></i></a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">4</a></li>
+                            <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-right"></i></a>
+                            </li>
+                        </ul>
+                    </nav>
+                    </script>
 
-                        <!----------------------------------------------------------------------
+                    <!----------------------------------------------------------------------
 popovers
 ------------------------------------------------------------------------>
 
-                        <h2>Popovers</h2>
+                    <h2>Popovers</h2>
 
-                        <div class="alert alert-dark mb-5">
-                            Options:
-                            <ul>
-                                <li>Placement: <code>data-placement="top/right/bottom/left"</code></li>
-                            </ul>
-                        </div>
+                    <div class="alert alert-dark mb-5">
+                        Options:
+                        <ul>
+                            <li>Placement: <code>data-placement="top/right/bottom/left"</code></li>
+                        </ul>
+                    </div>
 
-                        <div class="alert alert-dark mb-5">
-                            Call: <code>$(function () {
+                    <div class="alert alert-dark mb-5">
+                        Call: <code>$(function () {
                                 $('[data-toggle="popover"]').popover()
                                 })
                                 $('.popover-dismiss').popover({
                                 trigger: 'focus'
                                 })</code>
-                        </div>
+                    </div>
 
-                        <div class="mb-4">
-                            <h4 class="mb-4 h5">Click me</h4>
-                            <a tabindex="0" data-placement="top" class="btn btn-light" role="button"
-                                data-toggle="popover" data-trigger="focus" title=""
-                                data-content="And here's some amazing content. It's very engaging. Right?"
-                                data-original-title="Dismissible popover">On Top</a>
-                            <a tabindex="0" data-placement="right" class="btn btn-light" role="button"
-                                data-toggle="popover" data-trigger="focus" title=""
-                                data-content="And here's some amazing content. It's very engaging. Right?"
-                                data-original-title="Dismissible popover">On Right</a>
-                            <a tabindex="0" data-placement="bottom" class="btn btn-light" role="button"
-                                data-toggle="popover" data-trigger="focus" title=""
-                                data-content="And here's some amazing content. It's very engaging. Right?"
-                                data-original-title="Dismissible popover">On Bottom</a>
-                            <a tabindex="0" data-placement="left" class="btn btn-light" role="button"
-                                data-toggle="popover" data-trigger="focus" title=""
-                                data-content="And here's some amazing content. It's very engaging. Right?"
-                                data-original-title="Dismissible popover">On Left</a>
-                        </div>
-
-
-                        <script type="text/plain" class="language-markup"><!-- popover -->
-                            <a tabindex="0" data-placement="top" class="btn btn-light" role="button"
-                                data-toggle="popover" data-trigger="focus" title=""
-                                data-content="And here's some amazing content. It's very engaging. Right?"
-                                data-original-title="Dismissible popover">On Top</a>
-                            <a tabindex="0" data-placement="right" class="btn btn-light" role="button"
-                                data-toggle="popover" data-trigger="focus" title=""
-                                data-content="And here's some amazing content. It's very engaging. Right?"
-                                data-original-title="Dismissible popover">On Right</a>
-                            <a tabindex="0" data-placement="bottom" class="btn btn-light" role="button"
-                                data-toggle="popover" data-trigger="focus" title=""
-                                data-content="And here's some amazing content. It's very engaging. Right?"
-                                data-original-title="Dismissible popover">On Bottom</a>
-                            <a tabindex="0" data-placement="left" class="btn btn-light" role="button"
-                                data-toggle="popover" data-trigger="focus" title=""
-                                data-content="And here's some amazing content. It's very engaging. Right?"
-                                data-original-title="Dismissible popover">On Left</a></script>
+                    <div class="mb-4">
+                        <h4 class="mb-4 h5">Click me</h4>
+                        <a tabindex="0" data-placement="top" class="btn btn-light" role="button" data-toggle="popover"
+                            data-trigger="focus" title=""
+                            data-content="And here's some amazing content. It's very engaging. Right?"
+                            data-original-title="Dismissible popover">On Top</a>
+                        <a tabindex="0" data-placement="right" class="btn btn-light" role="button" data-toggle="popover"
+                            data-trigger="focus" title=""
+                            data-content="And here's some amazing content. It's very engaging. Right?"
+                            data-original-title="Dismissible popover">On Right</a>
+                        <a tabindex="0" data-placement="bottom" class="btn btn-light" role="button"
+                            data-toggle="popover" data-trigger="focus" title=""
+                            data-content="And here's some amazing content. It's very engaging. Right?"
+                            data-original-title="Dismissible popover">On Bottom</a>
+                        <a tabindex="0" data-placement="left" class="btn btn-light" role="button" data-toggle="popover"
+                            data-trigger="focus" title=""
+                            data-content="And here's some amazing content. It's very engaging. Right?"
+                            data-original-title="Dismissible popover">On Left</a>
+                    </div>
 
 
+                    <script type="text/plain" class="language-markup"><!-- popover -->
+                    <a tabindex="0" data-placement="top" class="btn btn-light" role="button" data-toggle="popover"
+                        data-trigger="focus" title=""
+                        data-content="And here's some amazing content. It's very engaging. Right?"
+                        data-original-title="Dismissible popover">On Top</a>
+                    <a tabindex="0" data-placement="right" class="btn btn-light" role="button" data-toggle="popover"
+                        data-trigger="focus" title=""
+                        data-content="And here's some amazing content. It's very engaging. Right?"
+                        data-original-title="Dismissible popover">On Right</a>
+                    <a tabindex="0" data-placement="bottom" class="btn btn-light" role="button" data-toggle="popover"
+                        data-trigger="focus" title=""
+                        data-content="And here's some amazing content. It's very engaging. Right?"
+                        data-original-title="Dismissible popover">On Bottom</a>
+                    <a tabindex="0" data-placement="left" class="btn btn-light" role="button" data-toggle="popover"
+                        data-trigger="focus" title=""
+                        data-content="And here's some amazing content. It's very engaging. Right?"
+                        data-original-title="Dismissible popover">On Left</a>
+                    </script>
 
-                        <!----------------------------------------------------------------------
+
+
+                    <!----------------------------------------------------------------------
 tables
 ------------------------------------------------------------------------>
 
-                        <h2>Table</h2>
+                    <h2>Table</h2>
 
-                        <table class="table">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th scope="col">
-                                        #
-                                    </th>
-                                    <th scope="col">
-                                        First
-                                    </th>
-                                    <th scope="col">
-                                        Last
-                                    </th>
-                                    <th scope="col">
-                                        Handle
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">
-                                        1
-                                    </th>
-                                    <td>
-                                        Mark
-                                    </td>
-                                    <td>
-                                        Otto
-                                    </td>
-                                    <td>
-                                        @mdo
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        2
-                                    </th>
-                                    <td>
-                                        Jacob
-                                    </td>
-                                    <td>
-                                        Thornton
-                                    </td>
-                                    <td>
-                                        @fat
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        3
-                                    </th>
-                                    <td>
-                                        Larry
-                                    </td>
-                                    <td>
-                                        the Bird
-                                    </td>
-                                    <td>
-                                        @twitter
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">
+                                    #
+                                </th>
+                                <th scope="col">
+                                    First
+                                </th>
+                                <th scope="col">
+                                    Last
+                                </th>
+                                <th scope="col">
+                                    Handle
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">
+                                    1
+                                </th>
+                                <td>
+                                    Mark
+                                </td>
+                                <td>
+                                    Otto
+                                </td>
+                                <td>
+                                    @mdo
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    2
+                                </th>
+                                <td>
+                                    Jacob
+                                </td>
+                                <td>
+                                    Thornton
+                                </td>
+                                <td>
+                                    @fat
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    3
+                                </th>
+                                <td>
+                                    Larry
+                                </td>
+                                <td>
+                                    the Bird
+                                </td>
+                                <td>
+                                    @twitter
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
 
 
 
-                        <script type="text/plain" class="language-markup"><!-- table -->
-                            <table class="table">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th scope="col"> # </th>
-                                        <th scope="col"> First </th>
-                                        <th scope="col"> Last </th>
-                                        <th scope="col"> Handle </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row"> 1 </th>
-                                        <td> Mark </td>
-                                        <td> Otto </td>
-                                        <td> @mdo </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row"> 2 </th>
-                                        <td> Jacob </td>
-                                        <td> Thornton </td>
-                                        <td> @fat </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row"> 3 </th>
-                                        <td> Larry </td>
-                                        <td> the Bird </td>
-                                        <td> @twitter </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </script>
+                    <script type="text/plain" class="language-markup"><!-- table -->
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col"> # </th>
+                                <th scope="col"> First </th>
+                                <th scope="col"> Last </th>
+                                <th scope="col"> Handle </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row"> 1 </th>
+                                <td> Mark </td>
+                                <td> Otto </td>
+                                <td> @mdo </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"> 2 </th>
+                                <td> Jacob </td>
+                                <td> Thornton </td>
+                                <td> @fat </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"> 3 </th>
+                                <td> Larry </td>
+                                <td> the Bird </td>
+                                <td> @twitter </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </script>
 
-                        <!----------------------------------------------------------------------
+                    <!----------------------------------------------------------------------
  tooltips
 ------------------------------------------------------------------------>
 
-                        <h2>Tooltips</h2>
-                        <div class="alert alert-dark mb-5">
-                            Options:
-                            <ul>
-                                <li>Placement: <code>data-placement="top/right/bottom/left"</code></li>
-                            </ul>
-                        </div>
+                    <h2>Tooltips</h2>
+                    <div class="alert alert-dark mb-5">
+                        Options:
+                        <ul>
+                            <li>Placement: <code>data-placement="top/right/bottom/left"</code></li>
+                        </ul>
+                    </div>
 
-                        <div class="alert alert-dark mb-5">
-                            Call: <code>
+                    <div class="alert alert-dark mb-5">
+                        Call: <code>
                                 $(function () {
                                 $('[data-toggle=&quot;tooltip&quot;]').tooltip()
                                 })
                             </code>
-                        </div>
+                    </div>
 
-                        <div class="mb-4">
-                            <button type="button" class="btn btn-light" data-toggle="tooltip" data-placement="top"
-                                title="" data-original-title="Tooltip on top">
-                                On top </button>
-                            <button type="button" class="btn btn-light" data-toggle="tooltip" data-placement="right"
-                                title="" data-original-title="Tooltip on right">
-                                On right </button>
-                            <button type="button" class="btn btn-light" data-toggle="tooltip" data-placement="bottom"
-                                title="" data-original-title="Tooltip on bottom">
-                                On bottom </button>
-                            <button type="button" class="btn btn-light" data-toggle="tooltip" data-placement="left"
-                                title="" data-original-title="Tooltip on left">
-                                On left </button>
-                        </div>
-
-
-                        <script type="text/plain" class="language-markup"><!-- tooltips -->
-                            <button type="button" class="btn btn-light" data-toggle="tooltip" data-placement="top"
-                                title="" data-original-title="Tooltip on top">
-                                On top </button>
-
-                            <button type="button" class="btn btn-light" data-toggle="tooltip" data-placement="right"
-                                title="" data-original-title="Tooltip on right">
-                                On right </button>
-
-                            <button type="button" class="btn btn-light" data-toggle="tooltip" data-placement="bottom"
-                                title="" data-original-title="Tooltip on bottom">
-                                On bottom </button>
-
-                            <button type="button" class="btn btn-light" data-toggle="tooltip" data-placement="left"
-                                title="" data-original-title="Tooltip on left">
-                                On left </button></script>
+                    <div class="mb-4">
+                        <button type="button" class="btn btn-light" data-toggle="tooltip" data-placement="top" title=""
+                            data-original-title="Tooltip on top">
+                            On top </button>
+                        <button type="button" class="btn btn-light" data-toggle="tooltip" data-placement="right"
+                            title="" data-original-title="Tooltip on right">
+                            On right </button>
+                        <button type="button" class="btn btn-light" data-toggle="tooltip" data-placement="bottom"
+                            title="" data-original-title="Tooltip on bottom">
+                            On bottom </button>
+                        <button type="button" class="btn btn-light" data-toggle="tooltip" data-placement="left" title=""
+                            data-original-title="Tooltip on left">
+                            On left </button>
+                    </div>
 
 
+                    <script type="text/plain" class="language-markup"><!-- tooltips -->
+                    <button type="button" class="btn btn-light" data-toggle="tooltip" data-placement="top" title=""
+                        data-original-title="Tooltip on top">
+                        On top </button>
 
-                    </div><!-- End docs -->
-                </div>
+                    <button type="button" class="btn btn-light" data-toggle="tooltip" data-placement="right" title=""
+                        data-original-title="Tooltip on right">
+                        On right </button>
+
+                    <button type="button" class="btn btn-light" data-toggle="tooltip" data-placement="bottom" title=""
+                        data-original-title="Tooltip on bottom">
+                        On bottom </button>
+
+                    <button type="button" class="btn btn-light" data-toggle="tooltip" data-placement="left" title=""
+                        data-original-title="Tooltip on left">
+                        On left </button>
+                    </script>
+
+
+
+                </div><!-- End docs -->
             </div>
+        </div>
         </div>
         <!-- End DOCS -->
 
@@ -1458,6 +1560,10 @@ JAVASCRIPTS
     <!-- Docs -->
     <script src="../../asserts/js/prism.js" type="text/javascript"></script>
     <script src="../../asserts/js/bootstrap-toc.js" type="text/javascript"></script>
+
+    <!-- bootstap-table -->
+    <script type="text/javascript" src="../../asserts/js/bootstrap-table/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="../../asserts/js/bootstrap-table/bootstrap-table-zh-CN.min.js"></script>
     <script>
         $(function () {
             new ClipboardJS('.btn');
@@ -1480,13 +1586,90 @@ JAVASCRIPTS
                 connectTest(data)
             })
 
-            $('#accountButton').click(function(){
+            $('#accountButton').click(function () {
                 var accountValue = $('#accountAddress').val()
-                if(accountValue == ''){
+                if (accountValue == '') {
                     layer.alert("账户地址不能为空！", {
+                        icon: 2,
+                        skin: "lyear-skin-danger",
+                        title: "转换提示",
+                        closeBtn: 1,
+                        btn: ["确定", "取消"],
+                        yes: function (index, layero) {
+                            layer.close(index);
+                        },
+                        cancle: function (index, layero) {
+                            layer.close(index);
+                        },
+                    });
+                } else {
+                    formatAccount(accountValue)
+                }
+            })
+
+
+            $('#accountBalanceButton').click(function () {
+                var accountConnUrl = $('#accountConnUrl').val()
+                var accountAddress = $('#accountBalanceAddress').val()
+                var block = $('#accountBalanceBlock').val()
+                var data = {
+                    url: accountConnUrl,
+                    address: accountAddress,
+                    block: block
+                }
+                postBalance(data)
+            })
+
+
+
+            $('#blockInfoButton').click(function () {
+                var url = $('#blockUrl').val()
+                var blockNum = $('#blockNum').val()
+                var data = {
+                    url: url,
+                    blockNum: blockNum
+                }
+                postBlockInfo(data)
+            })
+
+
+            $('#transactionButton').click(function () {
+                var url = $('#transactionUrl').val()
+                var blockNum = $('#transactionBlockNum').val()
+                var data = {
+                    url: url,
+                    blockNum: blockNum
+                }
+                postTransation(data)
+            })
+
+        });
+
+
+        //查询交易列表
+        function postTransation(data) {
+            $("#transactionTable").bootstrapTable("destroy");
+            $("#transactionTable").bootstrapTable({
+                method: "POST",
+                dataType: "json",
+                url: basePath + "/api/transactionQuery",
+                sidePagination: "server", //服务器分页
+                striped: true, //隔行换色
+                clickToSelect: false, //选择行即选择checkbox
+                singleSelect: false, //可以手动选择多行
+                pagination: true, //启用分页
+                pageSize: 10, //每页行数
+                pageNumber: 1, //起始页
+                pageList: [10, 20, 50, 100], //可供选择的每页的行数
+                escape: true, //过滤危险字符
+                queryParamsType: "",
+                queryParams: JSON.stringify(data), //携带参数
+                responseHandler: function (res) {
+                    if (res.code != 0) {
+                        layer.alert(respons.message, {
                             icon: 2,
                             skin: "lyear-skin-danger",
-                            title: "转换提示",
+                            title: "获取区块信息提示",
                             closeBtn: 1,
                             btn: ["确定", "取消"],
                             yes: function (index, layero) {
@@ -1496,38 +1679,97 @@ JAVASCRIPTS
                                 layer.close(index);
                             },
                         });
-                }else{
-                    formatAccount(accountValue)
+                    }
+
+                    // 对返回参数进行处理
+                    return {
+                        total: res.data.total,
+                        rows: res.data.data,
+                    };
+                },
+                columns: [
+                    {
+                        title: "序号",
+                        field: "",
+                        align: "center",
+                        formatter: function (value, row, index) {
+                            return index + 1;
+                        },
+                    },
+                    {
+                        title: "交易hash",
+                        field: "code",
+                        align: "center",
+                        valign: "middle",
+                    },
+                    {
+                        title: "交易状态",
+                        field: "status",
+                        align: "center",
+                        formatter: function (value, row, index) {
+                            var a = "";
+                            if (value == 0) { } else if (value == 1) {
+                                a = '<span class="label label-default">未开始</span>';
+                            } else if (value == 2) {
+                                a = '<span class="label label-success">进行中</span>';
+                            } else if (value == 3) {
+                                a = '<span class="label label-yellow">已结束</span>';
+                            }
+                            return a;
+                        },
+                    },
+                    {
+                        title: "金额",
+                        field: "title",
+                        align: "center",
+                        valign: "middle",
+                    },
+                    {
+                        title: "Gas费用",
+                        field: "desc",
+                        align: "center",
+                    },
+                    {
+                        title: "交易随机数",
+                        field: "desc",
+                        align: "center",
+                    },
+                    {
+                        title: "发送方",
+                        field: "desc",
+                        align: "center",
+                    },
+                    {
+                        title: "接收方",
+                        field: "desc",
+                        align: "center",
+                    },
+
+                    {
+                        title: "操作",
+                        field: "id",
+                        align: "left",
+                        formatter: function (value, row, index) {
+                            return '<a class="btn btn-xs btn-primary" href="#!" onclick=editAndLook(' + JSON.stringify( row).replace(/\"/g, "'") + ',' + '0)' +' title="编辑" data-toggle="modal" data-target="#myModal" ><i class="mdi mdi-pencil">编辑</i></a>&nbsp';
+                        },
+                    },
+                ],
+                onLoadSuccess: function () {
+
+                },
+
+                onLoadError: function (response) {
+                    layer.alert("系统错误", {
+                        icon: "error",
+                        skin: "lyear-skin-danger",
+                    });
                 }
+
             })
+        }
 
-
-            $('#accountBalanceButton').click(function(){
-                var accountConnUrl = $('#accountConnUrl').val()
-                var accountAddress = $('#accountBalanceAddress').val()
-                var block  = $('#accountBalanceBlock').val()
-                var data = {
-                   url: accountConnUrl,
-                   address: accountAddress,
-                   block: block 
-                }
-                postBalance(data)
-            })
-
-            
-
-            $('#blockInfoButton').click(function(){
-                var url = $('#blockUrl').val()
-                var blockNum = $('#blockNum').val()
-                var data = {
-                   url: url,
-                   blockNum: blockNum 
-                }
-                postBlockInfo(data)
-            })
-        });
-
-        function postBlockInfo(data){
+        //查询区块信息
+        function postBlockInfo(data) {
             $.ajax({
                 type: "POST",
                 url: basePath + "/api/blockQuery",
@@ -1544,8 +1786,16 @@ JAVASCRIPTS
                             btn: ["确定", "取消"],
                             yes: function (index, layero) {
                                 layer.close(index);
-                               
-                                
+                                $('#block_number').val(response.data.number)
+                                $('#block_hash').val(response.data.hash)
+                                $('#block_timestamp').val(response.data.timestamp)
+                                $('#block_nonce').val(response.data.nonce)
+                                $('#block_parentHash').val(response.data.parentHash)
+                                $('#block_stateRoot').val(response.data.stateRoot)
+                                $('#block_transactionsRoot').val(response.data.transactionsRoot)
+                                $('#block_difficulty').val(response.data.difficulty)
+                                $('#block_gasLimit').val(response.data.gasLimit)
+                                $('#block_gasUsed').val(response.data.gasUsed)
                             },
                             cancle: function (index, layero) {
                                 layer.close(index);
@@ -1560,7 +1810,7 @@ JAVASCRIPTS
                             btn: ["确定", "取消"],
                             yes: function (index, layero) {
                                 layer.close(index);
-                               
+
                             },
                             cancle: function (index, layero) {
                                 layer.close(index);
@@ -1570,7 +1820,7 @@ JAVASCRIPTS
 
                 },
                 error: function (respons) {
-                    layer.alert("获取区块信息失败", {
+                    layer.alert(respons.message, {
                         icon: 2,
                         skin: "lyear-skin-danger",
                         title: "获取区块信息提示",
@@ -1588,7 +1838,7 @@ JAVASCRIPTS
 
         }
 
-        function postBalance(data){
+        function postBalance(data) {
             $.ajax({
                 type: "POST",
                 url: basePath + "/api/accountBalance",
@@ -1605,11 +1855,11 @@ JAVASCRIPTS
                             btn: ["确定", "取消"],
                             yes: function (index, layero) {
                                 layer.close(index);
-                                $('#weiBalance').val( response.data.wei)
-                                $('#gweiBalance').val( response.data.gwei)
-                                $('#unDealWeiBalance').val( response.data.unDealWei)
-                                $('#unDealGWeiBalance').val( response.data.unDealGWei)
-                                
+                                $('#weiBalance').val(response.data.wei)
+                                $('#gweiBalance').val(response.data.gwei)
+                                $('#unDealWeiBalance').val(response.data.unDealWei)
+                                $('#unDealGWeiBalance').val(response.data.unDealGWei)
+
                             },
                             cancle: function (index, layero) {
                                 layer.close(index);
@@ -1652,10 +1902,10 @@ JAVASCRIPTS
             })
         }
 
-        function formatAccount(accountAddress){
+        function formatAccount(accountAddress) {
             $.ajax({
                 type: "GET",
-                url: basePath + "/api/accountFormat?accountAddress="+accountAddress,
+                url: basePath + "/api/accountFormat?accountAddress=" + accountAddress,
                 contentType: "application/json",
                 success: function (response) {
                     console.info("返回结果： " + JSON.stringify(response))
@@ -1668,9 +1918,9 @@ JAVASCRIPTS
                             btn: ["确定", "取消"],
                             yes: function (index, layero) {
                                 layer.close(index);
-                               $('#hexAccount').val(response.data.hexAccount) 
-                               $('#hashHexAccount').val(response.data.hashHexAccount) 
-                               $('#bytesAccount').val(response.data.bytesAccount)
+                                $('#hexAccount').val(response.data.hexAccount)
+                                $('#hashHexAccount').val(response.data.hashHexAccount)
+                                $('#bytesAccount').val(response.data.bytesAccount)
                             },
                             cancle: function (index, layero) {
                                 layer.close(index);

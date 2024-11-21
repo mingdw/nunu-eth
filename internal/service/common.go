@@ -12,6 +12,7 @@ import (
 	"strconv"
 
 	"github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/ethclient"
 )
 
@@ -38,7 +39,9 @@ type CommonService interface {
 
 	AccountBalance(ctx context.Context, req *v1.AccountBalanceRequest) (accountBalance *AccountBalance, err error)
 
-	BlockQuery(ctx context.Context, req *v1.BlockQueryRequest) (accountBalance *AccountBalance, err error)
+	BlockQuery(ctx context.Context, req *v1.BlockQueryRequest) (header *types.Header, err error)
+
+	TransactionQuery(ctx context.Context, req *v1.BlockQueryRequest) (mapData map[string]interface{}, err error)
 }
 
 func NewCommonService(
@@ -144,9 +147,57 @@ func (s *commonService) AccountBalance(ctx context.Context, req *v1.AccountBalan
 	return
 }
 
-func (s *commonService) BlockQuery(ctx context.Context, req *v1.BlockQueryRequest) (accountBalance *AccountBalance, err error) {
+func (s *commonService) BlockQuery(ctx context.Context, req *v1.BlockQueryRequest) (header *types.Header, err error) {
+	fmt.Println("blockNum: ", req.BlockNum, "; address: ", req.Url)
+	client, err := ethclient.Dial(req.Url)
+	if err != nil {
+		return
+	}
+	bn, err := parseBlock(req.BlockNum)
+	if err != nil {
+		return
+	}
+	header, err = client.HeaderByNumber(context.Background(), bn) //查询区块信息，如果区块号为空则查询最新的区块信息
+	if err != nil {
+		return
+	}
+	// v, _ := json.Marshal(header)
+	// jsonStr := string(v)
+	// log.Println("eth header info: ", jsonStr)
 	return
 }
+
+func (s *commonService) TransactionQuery(ctx context.Context, req *v1.BlockQueryRequest) (mapData map[string]interface{}, err error) {
+	fmt.Println("blockNum: ", req.BlockNum, "; address: ", req.Url)
+	client, err := ethclient.Dial(req.Url)
+	if err != nil {
+		return
+	}
+	bn, err := parseBlock(req.BlockNum)
+	if err != nil {
+		return
+	}
+	block, err := client.HeaderByNumber(context.Background(), bn) //查询区块信息，如果区块号为空则查询最新的区块信息
+	if err != nil {
+		return
+	}
+
+	count, err := client.TransactionCount(context.Background(), block.Hash())
+	if err != nil {
+		mapData["total"] = count
+	}
+	transactions, isPending, err := client.TransactionByHash(context.Background(), block.Hash())
+	if err != nil {
+		mapData["data"] = transactions
+		mapData["isPending"] = isPending
+	}
+
+	// v, _ := json.Marshal(header)
+	// jsonStr := string(v)
+	// log.Println("eth header info: ", jsonStr)
+	return
+}
+
 func connect(url string) bool {
 	client, err := ethclient.Dial(url)
 	if err != nil {
@@ -155,4 +206,18 @@ func connect(url string) bool {
 	}
 	_ = client
 	return true
+}
+
+func parseBlock(blockNum string) (num *big.Int, err error) {
+	if blockNum == "" {
+		num = nil
+		return
+	}
+	n, err := strconv.ParseInt(blockNum, 10, 64)
+	if err != nil {
+		_ = n
+		return
+	}
+	num = big.NewInt(int64(n))
+	return
 }

@@ -57,6 +57,8 @@ func NewHTTPServer(
 		api.POST("/accountBalance", commonHandler.AccountBalance)
 
 		api.POST("/blockQuery", commonHandler.BlockQuery)
+
+		api.POST("/transactionQuery", commonHandler.TransactionQuery)
 	}
 	v1 := s.Group("/v1")
 	{

@@ -98,7 +98,21 @@ func (h *CommonHandler) BlockQuery(ctx *gin.Context) {
 	}
 	accountInfo, err := h.commonService.BlockQuery(ctx, &req)
 	if err != nil {
+		v1.HandleError(ctx, http.StatusOK, err, nil)
+		return
+	}
+	v1.HandleSuccess(ctx, accountInfo)
+}
+
+func (h *CommonHandler) TransactionQuery(ctx *gin.Context) {
+	var req v1.BlockQueryRequest
+	if err := ctx.ShouldBindJSON(&req); err != nil {
 		v1.HandleError(ctx, http.StatusBadRequest, v1.ErrBadRequest, nil)
+		return
+	}
+	accountInfo, err := h.commonService.BlockQuery(ctx, &req)
+	if err != nil {
+		v1.HandleError(ctx, http.StatusOK, err, nil)
 		return
 	}
 	v1.HandleSuccess(ctx, accountInfo)

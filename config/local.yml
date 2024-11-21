@@ -31,5 +31,7 @@ log:
   compress: true
 
 ethclient:
+  name: infura
   url: http://127.0.0.1
   port: 8545
+  apiKey: xxxxx
