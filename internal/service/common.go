@@ -173,6 +173,7 @@ func (s *commonService) TransactionQuery(ctx context.Context, req *v1.BlockQuery
 	if err != nil {
 		return
 	}
+	mapData = make(map[string]interface{})
 	bn, err := parseBlock(req.BlockNum)
 	if err != nil {
 		return
