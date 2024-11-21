@@ -32,6 +32,6 @@ log:
 
 ethclient:
   name: infura
-  url: http://127.0.0.1
-  port: 8545
-  apiKey: xxxxx
+  url: https://sepolia.infura.io/v3/968aba10f4a4430c943e5d3cb8704269
+  port:
+  apiKey:
