@@ -105,12 +105,12 @@ func (h *CommonHandler) BlockQuery(ctx *gin.Context) {
 }
 
 func (h *CommonHandler) TransactionQuery(ctx *gin.Context) {
-	var req v1.BlockQueryRequest
+	var req v1.TransactionsQueryRequest
 	if err := ctx.ShouldBindJSON(&req); err != nil {
 		v1.HandleError(ctx, http.StatusBadRequest, v1.ErrBadRequest, nil)
 		return
 	}
-	accountInfo, err := h.commonService.BlockQuery(ctx, &req)
+	accountInfo, err := h.commonService.TransactionQuery(ctx, &req)
 	if err != nil {
 		v1.HandleError(ctx, http.StatusOK, err, nil)
 		return

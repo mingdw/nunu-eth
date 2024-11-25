@@ -46,7 +46,7 @@ type CommonService interface {
 
 	BlockQuery(ctx context.Context, req *v1.BlockQueryRequest) (header *types.Header, err error)
 
-	TransactionQuery(ctx context.Context, req *v1.BlockQueryRequest) (mapData map[string]interface{}, err error)
+	TransactionQuery(ctx context.Context, req *v1.TransactionsQueryRequest) (mapData map[string]interface{}, err error)
 
 	CreateAccount(ctx context.Context) (mapData map[string]interface{}, err error)
 
@@ -176,18 +176,15 @@ func (s *commonService) BlockQuery(ctx context.Context, req *v1.BlockQueryReques
 	return
 }
 
-func (s *commonService) TransactionQuery(ctx context.Context, req *v1.BlockQueryRequest) (mapData map[string]interface{}, err error) {
-	fmt.Println("blockNum: ", req.BlockNum, "; address: ", req.Url)
-	client, err := ethclient.Dial(getRealUrl(req.Url))
+func (s *commonService) TransactionQuery(ctx context.Context, req *v1.TransactionsQueryRequest) (mapData map[string]interface{}, err error) {
+	url := getRealUrl(req.Url)
+	client, err := ethclient.Dial(url)
 	if err != nil {
 		return
 	}
 	mapData = make(map[string]interface{})
-	bn, err := parseBlock(req.BlockNum)
-	if err != nil {
-		return
-	}
-	block, err := client.HeaderByNumber(context.Background(), bn) //查询区块信息，如果区块号为空则查询最新的区块信息
+	blockHash := common.HexToHash(req.BlockHash)
+	block, err := client.BlockByHash(context.Background(), blockHash) //查询区块信息，如果区块号为空则查询最新的区块信息
 	if err != nil {
 		return
 	}

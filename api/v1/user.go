@@ -49,3 +49,8 @@ type BlockQueryRequest struct {
 	Url      string `json:"url" example:"url"`
 	BlockNum string `json:"blockNum"`
 }
+
+type TransactionsQueryRequest struct {
+	Url       string `json:"url" example:"url"`
+	BlockHash string `json:"blockHash"`
+}
