@@ -249,6 +249,64 @@ func (s *commonService) TxQuery(ctx context.Context, txHash string) (mapData map
 }
 
 func (s *commonService) ETHTransfer(ctx context.Context, req *v1.ETHTransferRequest) (mapData map[string]interface{}, err error) {
+	client, err := ethclient.Dial(getRealUrl(""))
+	if err != nil {
+		return
+	}
+	mapData = make(map[string]interface{})
+
+	privateKey, err := crypto.HexToECDSA(req.FromPrivateKey)
+	if err != nil {
+		return
+	}
+
+	publicKey := privateKey.Public()
+	publicKeyECDSA, ok := publicKey.(*ecdsa.PublicKey)
+	if !ok {
+		log.Fatal("cannot assert type: publicKey is not of type *ecdsa.PublicKey")
+		return
+	}
+
+	fromAddress := crypto.PubkeyToAddress(*publicKeyECDSA)
+	nonce, err := client.PendingNonceAt(context.Background(), fromAddress)
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
+
+	valueFloat, _ := strconv.ParseFloat(req.Value, 64)
+	valueFloat2, _ := strconv.ParseFloat("1000000000000000000", 64)
+	transferEth := valueFloat * valueFloat2
+	value := big.NewInt(int64(transferEth)) // in wei (1 eth)
+	log.Printf(req.Value, "--->", value)
+	gasLimit := uint64(21000) // in units
+	gasPrice, err := client.SuggestGasPrice(context.Background())
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	toAddress := common.HexToAddress(req.To)
+	var data []byte
+	tx := types.NewTransaction(nonce, toAddress, value, gasLimit, gasPrice, data)
+
+	chainID, err := client.NetworkID(context.Background())
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	signedTx, err := types.SignTx(tx, types.NewEIP155Signer(chainID), privateKey)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	err = client.SendTransaction(context.Background(), signedTx)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Printf("tx sent: %s", signedTx.Hash().Hex())
+
+	mapData["txHash"] = signedTx.Hash().Hex()
 
 	return
 }

@@ -1868,10 +1868,10 @@ JAVASCRIPTS
             })
 
             $('#ethTransferButton').click(function(){
-                var from  = $("ethTransferFrom").val()
-                var fromPrivateKey =  $("ethTransferFromPrivateKey").val()
-                var to  = $('ethTransferTo').val()
-                var value  = $('ethTransfervalue').val()
+                var from  = $("#ethTransferFrom").val()
+                var fromPrivateKey =  $("#ethTransferFromPrivateKey").val()
+                var to  = $('#ethTransferTo').val()
+                var value  = $('#ethTransferValue').val()
                 console.info("from: "+from+"; fromPrivateKey: "+fromPrivateKey+"; to: "+to+"; value: "+value)
                 if(from == "" || fromPrivateKey == "" || to=="" || value==""){
                     layer.alert("转账参数不能为空！", {
@@ -1905,6 +1905,7 @@ JAVASCRIPTS
                 type: "POST",
                 url: basePath + "/api/ethTransfer",
                 contentType: "application/json",
+                data: JSON.stringify(data),
                 success: function (response) {
                     console.info("ethTransfer 返回结果： " + JSON.stringify(response))
                     if (response.code == 0) {
