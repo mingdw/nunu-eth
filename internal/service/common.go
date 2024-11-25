@@ -2,18 +2,23 @@ package service
 
 import (
 	"context"
+	"crypto/ecdsa"
 	"fmt"
 	"log"
 	"math"
 	"math/big"
 	v1 "nunu-eth/api/v1"
+	"nunu-eth/api/variable"
 	"nunu-eth/internal/model"
 	"nunu-eth/internal/repository"
 	"strconv"
 
 	"github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/core/types"
+	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/ethclient"
+	"golang.org/x/crypto/sha3"
 )
 
 type AccountInfo struct {
@@ -42,6 +47,10 @@ type CommonService interface {
 	BlockQuery(ctx context.Context, req *v1.BlockQueryRequest) (header *types.Header, err error)
 
 	TransactionQuery(ctx context.Context, req *v1.BlockQueryRequest) (mapData map[string]interface{}, err error)
+
+	CreateAccount(ctx context.Context) (mapData map[string]interface{}, err error)
+
+	TxQuery(ctx context.Context, txHash string) (mapData map[string]interface{}, err error)
 }
 
 func NewCommonService(
@@ -79,7 +88,7 @@ func (s *commonService) Test(ctx context.Context, id int64) (*model.Common, erro
 }
 
 func (s *commonService) ConnectTest(ctx context.Context, req *v1.ETHConnectRequestData) (resultStatus int, e error) {
-	fmt.Println("url: ", req.Url, "; port: ", req.Port)
+	log.Println("url: ", req.Url, "; port: ", req.Port)
 	resultStatus = 0
 	if req.Url == "" || req.Port == "" {
 		resultStatus = -1
@@ -98,8 +107,8 @@ func (s *commonService) ConnectTest(ctx context.Context, req *v1.ETHConnectReque
 }
 
 func (s *commonService) AccountBalance(ctx context.Context, req *v1.AccountBalanceRequest) (accountBalance *AccountBalance, err error) {
-	fmt.Println("url: ", req.Url, "; address: ", req.Address, "; block： ", req.Block)
-	client, err := ethclient.Dial(req.Url)
+	log.Println("url: ", req.Url, "; address: ", req.Address, "; block： ", req.Block)
+	client, err := ethclient.Dial(getRealUrl(req.Url))
 	if err != nil {
 		return
 	}
@@ -110,7 +119,7 @@ func (s *commonService) AccountBalance(ctx context.Context, req *v1.AccountBalan
 		return
 	}
 	accountBalance.Wei = balance.String()
-	fmt.Println("可用最新余额(wei)", balance) // 25893180161173005034
+	log.Println("可用最新余额(wei)", balance) // 25893180161173005034
 
 	fbalance := new(big.Float)
 	fbalance.SetString(balance.String())
@@ -119,7 +128,7 @@ func (s *commonService) AccountBalance(ctx context.Context, req *v1.AccountBalan
 	accountBalance.GWei = ethValue.String()
 
 	pendingBalance, err := client.PendingBalanceAt(context.Background(), account)
-	fmt.Println("最新可用余额（wei）", pendingBalance) // 25729324269165216042
+	log.Println("最新可用余额（wei）", pendingBalance) // 25729324269165216042
 
 	if req.Block != "" {
 		blockBigInt, err2 := strconv.Atoi(req.Block)
@@ -138,9 +147,9 @@ func (s *commonService) AccountBalance(ctx context.Context, req *v1.AccountBalan
 		fbalance2 := new(big.Float)
 		fbalance2.SetString(balanceAt.String())
 		ethValue2 := new(big.Float).Quo(fbalance2, big.NewFloat(math.Pow10(18)))
-		fmt.Println(req.Block, "可用区块余额(wei)： ", balanceAt) // 25.729324269165216041
+		log.Println(req.Block, "可用区块余额(wei)： ", balanceAt) // 25.729324269165216041
 		accountBalance.UnDealWei = balanceAt.String()
-		fmt.Println(req.Block, "可用区块余额(gwei)： ", ethValue2) // 25729324269165216042
+		log.Println(req.Block, "可用区块余额(gwei)： ", ethValue2) // 25729324269165216042
 		accountBalance.UnDealGWei = ethValue2.String()
 
 	}
@@ -148,8 +157,8 @@ func (s *commonService) AccountBalance(ctx context.Context, req *v1.AccountBalan
 }
 
 func (s *commonService) BlockQuery(ctx context.Context, req *v1.BlockQueryRequest) (header *types.Header, err error) {
-	fmt.Println("blockNum: ", req.BlockNum, "; address: ", req.Url)
-	client, err := ethclient.Dial(req.Url)
+	log.Println("blockNum: ", req.BlockNum, "; address: ", req.Url)
+	client, err := ethclient.Dial(getRealUrl(req.Url))
 	if err != nil {
 		return
 	}
@@ -169,7 +178,7 @@ func (s *commonService) BlockQuery(ctx context.Context, req *v1.BlockQueryReques
 
 func (s *commonService) TransactionQuery(ctx context.Context, req *v1.BlockQueryRequest) (mapData map[string]interface{}, err error) {
 	fmt.Println("blockNum: ", req.BlockNum, "; address: ", req.Url)
-	client, err := ethclient.Dial(req.Url)
+	client, err := ethclient.Dial(getRealUrl(req.Url))
 	if err != nil {
 		return
 	}
@@ -199,8 +208,59 @@ func (s *commonService) TransactionQuery(ctx context.Context, req *v1.BlockQuery
 	return
 }
 
+func (s *commonService) CreateAccount(ctx context.Context) (mapData map[string]interface{}, err error) {
+	mapData = make(map[string]interface{})
+	privateKey, err := crypto.GenerateKey()
+	if err != nil {
+		return
+	}
+
+	privateKeyBytes := crypto.FromECDSA(privateKey)
+	accountPrivateKey := hexutil.Encode(privateKeyBytes)[2:]
+	log.Println("privateKey: ", accountPrivateKey) // 0xfad9c8855b740a0b7ed4c221dbad0f33a83a49cad6b3fe8d5817ac83d38b6a19
+	mapData["accountPrivateKey"] = accountPrivateKey
+
+	publicKey := privateKey.Public()
+	publicKeyECDSA, ok := publicKey.(*ecdsa.PublicKey)
+	if !ok {
+		return
+	}
+
+	publicKeyBytes := crypto.FromECDSAPub(publicKeyECDSA)
+	accountPublic := hexutil.Encode(publicKeyBytes)[4:]
+	log.Println("accountPunlicKey: ", accountPublic) // 0x049a7df67f79246283fdc93af76d4f8cdd62c4886e8cd870944e817dd0b97934fdd7719d0810951e03418205868a5c1b40b192451367f28e0088dd75e15de40c05
+	mapData["accountPublicKey"] = accountPublic
+
+	address := crypto.PubkeyToAddress(*publicKeyECDSA).Hex()
+	log.Println("accountAddress", address) // 0x96216849c49358B10257cb55b28eA603c874b05E
+	mapData["accountAddress"] = address
+
+	hash := sha3.NewLegacyKeccak256()
+	hash.Write(publicKeyBytes[1:])
+	log.Println("手动生成账户地址：", hexutil.Encode(hash.Sum(nil)[12:])) // 0x96216849c49358b10257cb55b28ea603c874b05e
+	mapData["accountAddress2"] = hexutil.Encode(hash.Sum(nil)[12:])
+	return
+}
+
+func (s *commonService) TxQuery(ctx context.Context, txHash string) (mapData map[string]interface{}, err error) {
+	client, err := ethclient.Dial(getRealUrl(""))
+	if err != nil {
+		return
+	}
+
+	hash := common.HexToHash(txHash)
+	tx, isPending, err := client.TransactionByHash(context.Background(), hash)
+	if err != nil {
+		return
+	}
+	mapData = make(map[string]interface{})
+	mapData["tx"] = tx
+	mapData["isPending"] = isPending
+	return
+}
+
 func connect(url string) bool {
-	client, err := ethclient.Dial(url)
+	client, err := ethclient.Dial(getRealUrl(url))
 	if err != nil {
 		fmt.Println("Could not connect to Infura with ethclient: fail")
 		return false
@@ -221,4 +281,12 @@ func parseBlock(blockNum string) (num *big.Int, err error) {
 	}
 	num = big.NewInt(int64(n))
 	return
+}
+
+func getRealUrl(url string) string {
+	returnUrl := variable.EthClientAddress
+	if url != "" && variable.ClientSwitch {
+		return variable.EthClientAddress
+	}
+	return returnUrl
 }

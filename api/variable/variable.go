@@ -7,15 +7,20 @@ import (
 	"os"
 	"strconv"
 	"strings"
+
+	"github.com/spf13/viper"
 )
 
 var (
-	ApplicationUrl   string //项目ip
-	ApplicationPort  int    //项目端口
-	ApplicationName  string //项目名称
-	EthClientAddress string //以太坊连接节点
-	ENV              string // 项目当前的环境
-	BasePath         string //项目根目录
+	ApplicationUrl   string       //项目ip
+	ApplicationPort  int          //项目端口
+	ApplicationName  string       //项目名称
+	EthClientAddress string       //以太坊连接节点
+	ENV              string       // 项目当前的环境
+	BasePath         string       //项目根目录
+	ClientSwitch     bool         //是否开启后端默认节点配置
+	Config           *viper.Viper //配置文件
+
 )
 
 func init() {
@@ -57,7 +62,11 @@ func init() {
 		} else {
 			EthClientAddress = ethUrl
 		}
+
+		switchFlag := conf.GetBool("ethclient.clientSwitch")
+		ClientSwitch = switchFlag
+		Config = conf
 	}
-	log.Println("init results --- >   ApplicationUrl: ", ApplicationUrl, "; ApplicationPort: ", ApplicationPort, "; ApplicationName: ", ApplicationName, "; EthClientAddress: ", EthClientAddress, "; Env: ", ENV, "; BasePath: ", BasePath)
+	log.Println("init results --- >   ApplicationUrl: ", ApplicationUrl, "; ApplicationPort: ", ApplicationPort, "; ApplicationName: ", ApplicationName, "; EthClientAddress: ", EthClientAddress, "; Env: ", ENV, "; BasePath: ", BasePath, "; ClientSwitch: ", ClientSwitch)
 	log.Println("**********初始化全局变量结束***************")
 }

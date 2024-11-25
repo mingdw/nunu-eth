@@ -117,3 +117,22 @@ func (h *CommonHandler) TransactionQuery(ctx *gin.Context) {
 	}
 	v1.HandleSuccess(ctx, accountInfo)
 }
+
+func (h *CommonHandler) CreateAccount(ctx *gin.Context) {
+	accountInfo, err := h.commonService.CreateAccount(ctx)
+	if err != nil {
+		v1.HandleError(ctx, http.StatusOK, err, nil)
+		return
+	}
+	v1.HandleSuccess(ctx, accountInfo)
+}
+
+func (h *CommonHandler) TxQuery(ctx *gin.Context) {
+	hash := ctx.Query("txHash")
+	accountInfo, err := h.commonService.TxQuery(ctx, hash)
+	if err != nil {
+		v1.HandleError(ctx, http.StatusOK, err, nil)
+		return
+	}
+	v1.HandleSuccess(ctx, accountInfo)
+}

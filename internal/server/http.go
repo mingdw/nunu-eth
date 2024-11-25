@@ -59,6 +59,11 @@ func NewHTTPServer(
 		api.POST("/blockQuery", commonHandler.BlockQuery)
 
 		api.POST("/transactionQuery", commonHandler.TransactionQuery)
+
+		api.POST("/createAccount", commonHandler.CreateAccount)
+
+		api.POST("/txQuery/:txHash", commonHandler.TxQuery)
+
 	}
 	v1 := s.Group("/v1")
 	{

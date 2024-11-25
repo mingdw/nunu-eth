@@ -2,12 +2,12 @@ package main
 
 import (
 	"context"
-	"flag"
 	"fmt"
 
+	"nunu-eth/api/variable"
 	"nunu-eth/cmd/server/wire"
-	"nunu-eth/pkg/config"
 	"nunu-eth/pkg/log"
+
 	"go.uber.org/zap"
 )
 
@@ -27,9 +27,8 @@ import (
 // @externalDocs.description  OpenAPI
 // @externalDocs.url          https://swagger.io/resources/open-api/
 func main() {
-	var envConf = flag.String("conf", "config/local.yml", "config path, eg: -conf ./config/local.yml")
-	flag.Parse()
-	conf := config.NewConfig(*envConf)
+
+	conf := variable.Config
 
 	logger := log.NewLog(conf)
 

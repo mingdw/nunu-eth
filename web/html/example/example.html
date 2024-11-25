@@ -420,9 +420,45 @@ if err != nil {
 
                     
 
-                        <h2>5. 创建钱包</h2>
+                        <h2>5. 钱包、账户、秘钥和地址</h2>
+                        <p>需要理解这些关键术语之间的差异:</p>
+                        <div class="container">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item   list-group-item-flush"><strong>1. 以太坊帐户是一对密钥。</strong>一个密钥用于创建你可以随意共享的地址，另一个密钥需要你保密，因为它用于签名。结合使用这两个密钥，你就可以持有资产和进行交易。</li>
+                                <li class="list-group-item   list-group-item-flush"><strong>2. 以太坊帐户有一个地址。</strong>就像收件箱有电子邮件地址一样。它用于识别你的数字资产。</li>
+                                <li class="list-group-item   list-group-item-flush"><strong>3.钱包是一种能让你使用密钥和帐户互动的工具。</strong>通过钱包，你可以查看帐户余额、发送交易等。</li>
+                           
+                            </ul>
+                        </div>
+                    </br>
+                    <p> 你可以快速生成账户↓↓↓</p>
+                    <div class="card">
+                        <div class="card-header"><a class="btn btn-primary" id="createAccountButton">生成账户参数</a></div>
+                        <div class="card-body">
+                            <form id="accountCreateForm" action="#">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">公钥: </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="accountPublicKey" value="">
+                                    </div>
+                                </div>
 
-                     
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">私钥: </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="accountPrivateKey" value="">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">账户地址: </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="accountAddress1" value="">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
 
                         <h2>6. 查询区块</h2>
                         <p>区块是指一批交易的组合，并且包含链中上一个区块的哈希。 这将区块连接在一起（成为一个链），因为哈希是从区块数据中加密得出的。
@@ -604,7 +640,7 @@ if err != nil {
                                         <label class="col-sm-2 col-form-label">请输入测试网地址：</label>
                                         <div class="col-sm-10">
                                             <input type="text" class="form-control" id="transactionUrl"
-                                                value="http://127.0.0.1:8545">
+                                                value="http://localhost:8545">
                                         </div>
                                     </div>
 
@@ -634,10 +670,116 @@ if err != nil {
 
                     <h2>8. 查询收据</h2>
 
+                    <p>在以太坊中，可以通过一笔交易的交易hash获取交易的详情。关于交易hash可以通过<a class="link" href="#transactionForm">上面章节</a>获取交易hash</p>
+                    </br>
+                    <div class="container">
+                        <h5>所有的交易包含以下信息：</h5>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item list-group-item-flush"><strong class="text-danger">from: </strong>发送者的地址，该地址将签署交易。 这将是一个外部帐户，因为合约帐户不能发送交易。</li>
+                            <li class="list-group-item list-group-item-flush"><strong class="text-danger">to: </strong>接收地址（如果是外部帐户，交易将传输值。 如果是合约帐户，交易将执行合约代码）</li>
+                            <li class="list-group-item list-group-item-flush"><strong class="text-danger">signature: </strong>发送者的标识符。 当发送者的私钥签署交易并确保发送者已授权此交易时，生成此签名</li>
+                            <li class="list-group-item list-group-item-flush"><strong class="text-danger">nonce : </strong>一个有序递增的计数器，表示来自帐户的交易数量</li>
+                            <li class="list-group-item list-group-item-flush"><strong class="text-danger">value : </strong>发送者向接收者转移的以太币数量（面值为 WEI，1 个以太币 = 1e+18wei）</li>
+                            <li class="list-group-item list-group-item-flush"><strong class="text-danger">input data : </strong>可包括任意数据的可选字段</li>
+                            <li class="list-group-item list-group-item-flush"><strong class="text-danger">gasLimit  : </strong>交易可以消耗的最大数量的燃料单位。 以太坊虚拟机指定每个计算步骤所需的燃料单位</li>
+                            <li class="list-group-item list-group-item-flush"><strong class="text-danger">maxPriorityFeePerGas  : </strong>作为小费提供给验证者的已消耗燃料的最高价格</li>
+                            <li class="list-group-item list-group-item-flush"><strong class="text-danger">maxFeePerGas  : </strong>愿意为交易支付的每单位燃料的最高费用（包括 baseFeePerGas 和 maxPriorityFeePerGas）</li>
+                        </ul>
+                    </br>
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-header">查询交易列表</h4>
+                            <form id="txQuery" action="#">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">请输入交易地址：</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="txHash" value=""
+                                            placeholder="必须输入交易hash">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group row">
+                                    <div class="col-sm-12 col-12 align-items-center justify-content-center">
+                                        <button type="button" class="btn btn-outline-primary col-sm-2"
+                                            id="txQueryButton">查询交易</button>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">from: </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="txFrom" value="" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">to: </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="txTo" value="" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">signature: </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="txSignature " value="" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">nonce: </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="txNonce" value="" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">value: </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="txValue" value="" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">input data: </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="txData" value="" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">gasLimit : </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="txGasLimit" value="" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">maxPriorityFeePerGas: </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="txMaxPriorityFeePerGas" value="" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">maxFeePerGas: </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="txMaxFeePerGas " value="" />
+                                    </div>
+                                </div>
+                            </form>
+
+                            
+                        </div>
+
+                    <label class="text-danger"> 具体交易详情可以参考查询区块交易列表</label>
+                    </div>
+
+
                     <h2>9. 代币的转账</h2>
+                    <p></p>
+
 
                     <h2>10. ETH转账</h2>
-
+                    <p>转账以太币，你必须要知道从哪个地址转向哪个地址，并且知道转账的金额和转账放的私钥来进行签名，然后才能将交易发送到以太坊网络等待交易确认</p>
                     <h2>11. 订阅新区块</h2>
 
 
@@ -1624,8 +1766,151 @@ JAVASCRIPTS
                 postTransation(data)
             })
 
+            $('#createAccountButton').click(function () {
+                createAccount()
+            })
+
+
+            $('#txQueryButton').click(function () {
+                var txHash = $('#txHash').val()
+                if (accountValue == '') {
+                    layer.alert("交易hash不能为空！", {
+                        icon: 2,
+                        skin: "lyear-skin-danger",
+                        title: "查询交易提示",
+                        closeBtn: 1,
+                        btn: ["确定", "取消"],
+                        yes: function (index, layero) {
+                            layer.close(index);
+                        },
+                        cancle: function (index, layero) {
+                            layer.close(index);
+                        },
+                    });
+                } else {
+                    txQuery(txHash)
+                }
+            })
         });
 
+        function txQuery(txHash){
+            $.ajax({
+                type: "POST",
+                url: basePath + "/api/txQuery/"+txHash,
+                contentType: "application/json",
+                success: function (response) {
+                    console.info("txQuery 返回结果： " + JSON.stringify(response))
+                    if (response.code == 0) {
+                        layer.alert("查询交易成功！", {
+                            icon: 1,
+                            skin: "lyear-skin-success",
+                            title: "查询交易提示",
+                            closeBtn: 1,
+                            btn: ["确定", "取消"],
+                            yes: function (index, layero) {
+                                layer.close(index);
+                               
+                            },
+                            cancle: function (index, layero) {
+                                layer.close(index);
+                            },
+                        });
+                    } else {
+                        layer.alert("查询交易失败", {
+                            icon: 2,
+                            skin: "lyear-skin-danger",
+                            title: "查询交易提示",
+                            closeBtn: 1,
+                            btn: ["确定", "取消"],
+                            yes: function (index, layero) {
+                                layer.close(index);
+                            },
+                            cancle: function (index, layero) {
+                                layer.close(index);
+                            },
+                        });
+                    }
+
+                },
+                error: function (respons) {
+                    layer.alert(respons.message, {
+                        icon: 2,
+                        skin: "lyear-skin-danger",
+                        title: "查询交易提示",
+                        closeBtn: 1,
+                        btn: ["确定", "取消"],
+                        yes: function (index, layero) {
+                            layer.close(index);
+                        },
+                        cancle: function (index, layero) {
+                            layer.close(index);
+                        },
+                    });
+                }
+            })
+        }
+
+        function createAccount(){
+            $.ajax({
+                type: "POST",
+                url: basePath + "/api/createAccount",
+                contentType: "application/json",
+                success: function (response) {
+                    console.info("postBlockInfo 返回结果： " + JSON.stringify(response))
+                    if (response.code == 0) {
+                        layer.alert("创建账户成功", {
+                            icon: 1,
+                            skin: "lyear-skin-success",
+                            title: "创建账户提示",
+                            closeBtn: 1,
+                            btn: ["确定", "取消"],
+                            yes: function (index, layero) {
+                                layer.close(index);
+                                $('#accountPublicKey').val(response.data.accountPublicKey)
+                                $('#accountPrivateKey').val(response.data.accountPrivateKey)
+                                $('#accountAddress1').val(response.data.accountAddress)
+                              
+                            },
+                            cancle: function (index, layero) {
+                                layer.close(index);
+                            },
+                        });
+                    } else {
+                        layer.alert("创建账户失败", {
+                            icon: 2,
+                            skin: "lyear-skin-danger",
+                            title: "创建账户提示",
+                            closeBtn: 1,
+                            btn: ["确定", "取消"],
+                            yes: function (index, layero) {
+                                layer.close(index);
+
+                            },
+                            cancle: function (index, layero) {
+                                layer.close(index);
+                            },
+                        });
+                    }
+
+                },
+                error: function (respons) {
+                    layer.alert(respons.message, {
+                        icon: 2,
+                        skin: "lyear-skin-danger",
+                        title: "获取区块信息提示",
+                        closeBtn: 1,
+                        btn: ["确定", "取消"],
+                        yes: function (index, layero) {
+                            layer.close(index);
+                        },
+                        cancle: function (index, layero) {
+                            layer.close(index);
+                        },
+                    });
+                }
+            })
+
+        }
 
         //查询交易列表
         function postTransation(data) {
