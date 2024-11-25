@@ -1901,7 +1901,7 @@ JAVASCRIPTS
         function ethTransfer(data){
             $.ajax({
                 type: "POST",
-                url: basePath + "/api/txQuery?txHash="+txHash,
+                url: basePath + "/api/ethTransfer",
                 contentType: "application/json",
                 success: function (response) {
                     console.info("ethTransfer 返回结果： " + JSON.stringify(response))
