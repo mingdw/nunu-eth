@@ -805,7 +805,56 @@ if err != nil {
 
 
                     <h2>10. ETH转账</h2>
-                    <p>转账以太币，你必须要知道从哪个地址转向哪个地址，并且知道转账的金额和转账放的私钥来进行签名，然后才能将交易发送到以太坊网络等待交易确认</p>
+                    <p>转账以太币，你必须要知道从哪个地址转向哪个地址，并且知道转账的金额和转账放的私钥来进行签名，然后才能将交易发送到以太坊网络等待交易确认 <strong><span class="text-danger">   快速进行转账↓↓↓↓↓</span></strong></p>
+                </br>
+                    <div class="card">
+                        <div class="card-body">
+                            <form id="ethTransfer" action="#">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">from: </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="ethTransferFrom" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">from privateKey: </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="ethTransferFromPrivateKey" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">to: </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="ethTransferTo" value="">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">value: </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="ethTransferValue" value="0.0001" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 col-12 align-items-center justify-content-center">
+                                        <button type="button" class="btn btn-outline-primary col-sm-2"
+                                            id="ethTransferButton">点我转账</button>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label"><a class="text-danger" data-toggle="tooltip" data-placement="top" title="交易发送成功以后，需要通过交易hash查询最新交易状态">*</a>&nbsp;交易Hash: </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control text-success" id="ethTransferTxHash" value="">
+                                    </div>
+                                </div>
+                                
+                            </form>
+                        </div>
+                    </div> 
+                   
+                   
+                   
                     <h2>11. 订阅新区块</h2>
 
 
@@ -1817,7 +1866,95 @@ JAVASCRIPTS
                     txQuery(txHash)
                 }
             })
+
+            $('#ethTransferButton').click(function(){
+                var from  = $('ethTransferFrom').val()
+                var fromPrivateKey =  $('ethTransferFromPrivateKey').val()
+                var to  = $('ethTransferTo').val()
+                var value  = $('ethTransfervalue').val()
+                if(from == "" || fromPrivateKey == "" || to=="" || value==""){
+                    layer.alert("转账参数不能为空！", {
+                        icon: 2,
+                        skin: "lyear-skin-danger",
+                        title: "ETH转账提示",
+                        closeBtn: 1,
+                        btn: ["确定", "取消"],
+                        yes: function (index, layero) {
+                            layer.close(index);
+                        },
+                        cancle: function (index, layero) {
+                            layer.close(index);
+                        },
+                    });
+                }else {
+                    var data = {
+                        from: from,
+                        fromPrivateKey:fromPrivateKey,
+                        to:to,
+                        value:value
+                    }
+                }
+            })
         });
+
+
+        function ethTransfer(data){
+            $.ajax({
+                type: "POST",
+                url: basePath + "/api/txQuery?txHash="+txHash,
+                contentType: "application/json",
+                success: function (response) {
+                    console.info("ethTransfer 返回结果： " + JSON.stringify(response))
+                    if (response.code == 0) {
+                        layer.alert("转账成功", {
+                            icon: 1,
+                            skin: "lyear-skin-success",
+                            title: "转账提示",
+                            closeBtn: 1,
+                            btn: ["确定", "取消"],
+                            yes: function (index, layero) {
+                                var txHash = response.data.txHash
+                                $('#ethTransferTxHash').val(txHash)
+                                layer.close(index);
+                            },
+                            cancle: function (index, layero) {
+                                layer.close(index);
+                            },
+                        });
+                    } else {
+                        layer.alert("转账失败", {
+                            icon: 2,
+                            skin: "lyear-skin-danger",
+                            title: "转账提示",
+                            closeBtn: 1,
+                            btn: ["确定", "取消"],
+                            yes: function (index, layero) {
+                                layer.close(index);
+                            },
+                            cancle: function (index, layero) {
+                                layer.close(index);
+                            },
+                        });
+                    }
+
+                },
+                error: function (respons) {
+                    layer.alert(respons.message, {
+                        icon: 2,
+                        skin: "lyear-skin-danger",
+                        title: "查询交易提示",
+                        closeBtn: 1,
+                        btn: ["确定", "取消"],
+                        yes: function (index, layero) {
+                            layer.close(index);
+                        },
+                        cancle: function (index, layero) {
+                            layer.close(index);
+                        },
+                    });
+                }
+            })
+        }
 
         function txQuery(txHash){
             $.ajax({

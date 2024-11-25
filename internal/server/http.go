@@ -64,6 +64,8 @@ func NewHTTPServer(
 
 		api.POST("/txQuery", commonHandler.TxQuery)
 
+		api.POST("/ethTransfer", commonHandler.ETHTransfer)
+
 	}
 	v1 := s.Group("/v1")
 	{

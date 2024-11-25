@@ -51,6 +51,8 @@ type CommonService interface {
 	CreateAccount(ctx context.Context) (mapData map[string]interface{}, err error)
 
 	TxQuery(ctx context.Context, txHash string) (mapData map[string]interface{}, err error)
+
+	ETHTransfer(ctx context.Context, req *v1.ETHTransferRequest) (mapData map[string]interface{}, err error)
 }
 
 func NewCommonService(
@@ -243,6 +245,11 @@ func (s *commonService) TxQuery(ctx context.Context, txHash string) (mapData map
 	mapData = make(map[string]interface{})
 	mapData["tx"] = tx
 	mapData["isPending"] = isPending
+	return
+}
+
+func (s *commonService) ETHTransfer(ctx context.Context, req *v1.ETHTransferRequest) (mapData map[string]interface{}, err error) {
+
 	return
 }
 

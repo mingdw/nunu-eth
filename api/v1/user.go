@@ -54,3 +54,10 @@ type TransactionsQueryRequest struct {
 	Url       string `json:"url" example:"url"`
 	BlockHash string `json:"blockHash"`
 }
+
+type ETHTransferRequest struct {
+	From           string `json:"from" example:"from"`
+	FromPrivateKey string `json:"fromPrivateKey"`
+	To             string `json:"to"`
+	Value          string `json:"value"`
+}
