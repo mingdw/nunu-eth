@@ -658,8 +658,10 @@ if err != nil {
 
                                     </div>
                                 </form>
-
-                                <table class="table table-bordered" id="transactionTable"></table>
+                                <div class="table" style="height: 300px; overflow-y: scroll;">
+                                    <table class="table table-bordered" id="transactionTable"></table>
+                                </div>
+                               
                             </div>
                         </div>
 
@@ -703,65 +705,90 @@ if err != nil {
                                             id="txQueryButton">查询交易</button>
                                     </div>
                                 </div>
-
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">from: </label>
+                                    <label class="col-sm-2 col-form-label">type: </label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="txFrom" value="" />
+                                        <input type="text" class="form-control" id="txType" value="">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">to: </label>
+                                    <label class="col-sm-2 col-form-label">chainId: </label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="txTo" value="" />
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">signature: </label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="txSignature " value="" />
+                                        <input type="text" class="form-control" id="txChainId" value="">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">nonce: </label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="txNonce" value="" />
+                                        <input type="text" class="form-control" id="txNonce" value="">
                                     </div>
                                 </div>
-
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">value: </label>
+                                    <label class="col-sm-2 col-form-label">to: </label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="txValue" value="" />
+                                        <input type="text" class="form-control" id="txTo" value="">
                                     </div>
                                 </div>
-
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">input data: </label>
+                                    <label class="col-sm-2 col-form-label">gas: </label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="txData" value="" />
+                                        <input type="text" class="form-control" id="txGas" value="">
                                     </div>
                                 </div>
-
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">gasLimit : </label>
+                                    <label class="col-sm-2 col-form-label">gasPrice: </label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="txGasLimit" value="" />
+                                        <input type="text" class="form-control" id="txGasPrice" value="">
                                     </div>
                                 </div>
-
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">maxPriorityFeePerGas: </label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="txMaxPriorityFeePerGas" value="" />
+                                        <input type="text" class="form-control" id="txMaxPriorityFeePerGas" value="">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">maxFeePerGas: </label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="txMaxFeePerGas " value="" />
+                                        <input type="text" class="form-control" id="txMaxFeePerGas" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">value: </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="txValue" value="">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">input: </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="txInput" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">v: </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="txV" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">r: </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="txR" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">s: </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="txS" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">hash: </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="transactionHash" value="">
                                     </div>
                                 </div>
                             </form>
@@ -1795,7 +1822,7 @@ JAVASCRIPTS
         function txQuery(txHash){
             $.ajax({
                 type: "POST",
-                url: basePath + "/api/txQuery/"+txHash,
+                url: basePath + "/api/txQuery?txHash="+txHash,
                 contentType: "application/json",
                 success: function (response) {
                     console.info("txQuery 返回结果： " + JSON.stringify(response))
@@ -1807,8 +1834,23 @@ JAVASCRIPTS
                             closeBtn: 1,
                             btn: ["确定", "取消"],
                             yes: function (index, layero) {
+                                var tx = response.data.tx
+                                $('#txType').val(ht(tx.type))
+                                $('#txChainId').val(ht(tx.chainId))
+                                $('#txNonce').val(ht(tx.nonce))
+                                $('#txTo').val(tx.to)
+                                $('#txGas').val(ht(tx.gas))
+                                $('#txGasPrice').val(ht(tx.gasPrice))
+                                $('#txMaxPriorityFeePerGas').val(tx.maxPriorityFeePerGas)
+                                $('#txMaxFeePerGas').val(tx.maxFeePerGas)
+                                $('#txValue').val(ht(tx.value))
+                                $('#txInput').val(ht(tx.input))
+                                $('#txV').val(tx.v)
+                                $('#txR').val(tx.r)
+                                $('#txS').val(tx.s)
+                                $('#transactionHash').val(tx.hash)
+                             
                                 layer.close(index);
-                               
                             },
                             cancle: function (index, layero) {
                                 layer.close(index);
@@ -1922,7 +1964,7 @@ JAVASCRIPTS
                 striped: true, //隔行换色
                 clickToSelect: false, //选择行即选择checkbox
                 singleSelect: false, //可以手动选择多行
-                pagination: true, //启用分页
+                pagination: false, //启用分页
                 pageSize: 10, //每页行数
                 pageNumber: 1, //起始页
                 pageList: [10, 20, 50, 100], //可供选择的每页的行数
@@ -1957,57 +1999,65 @@ JAVASCRIPTS
                         title: "序号",
                         field: "",
                         align: "center",
+                        valign: "middle",
                         formatter: function (value, row, index) {
                             return index + 1;
                         },
                     },
                     {
-                        title: "交易hash",
-                        field: "code",
+                        title: "hash",
+                        field: "hash",
                         align: "center",
                         valign: "middle",
                     },
                     {
-                        title: "交易状态",
-                        field: "status",
+                        title: "交易ttypeype",
+                        field: "type",
                         align: "center",
-                        formatter: function (value, row, index) {
-                            var a = "";
-                            if (value == 0) { } else if (value == 1) {
-                                a = '<span class="label label-default">未开始</span>';
-                            } else if (value == 2) {
-                                a = '<span class="label label-success">进行中</span>';
-                            } else if (value == 3) {
-                                a = '<span class="label label-yellow">已结束</span>';
-                            }
-                            return a;
-                        },
+                        valign: "middle",
                     },
+                    {
+                        title: "nonce",
+                        field: "nonce",
+                        align: "center",
+                        valign: "middle",
+                        formatter: HexTo,
+                    },
+                    {
+                        title: "chainID",
+                        field: "chainId",
+                        align: "center",
+                        valign: "middle",
+                        formatter: HexTo,
+                    },
+
                     {
                         title: "金额",
-                        field: "title",
+                        field: "value",
                         align: "center",
                         valign: "middle",
+                        formatter: HexTo
                     },
                     {
                         title: "Gas费用",
-                        field: "desc",
+                        field: "gas",
                         align: "center",
+                        valign: "middle",
+                        formatter: HexTo
                     },
-                    {
-                        title: "交易随机数",
-                        field: "desc",
-                        align: "center",
-                    },
+                    
                     {
                         title: "发送方",
-                        field: "desc",
+                        field: "s",
                         align: "center",
+                        valign: "middle",
+
                     },
                     {
                         title: "接收方",
-                        field: "desc",
+                        field: "to",
                         align: "center",
+                        valign: "middle",
                     },
 
                     {
@@ -2015,7 +2065,7 @@ JAVASCRIPTS
                         field: "id",
                         align: "left",
                         formatter: function (value, row, index) {
-                            return '<a class="btn btn-xs btn-primary" href="#!" onclick=editAndLook(' + JSON.stringify( row).replace(/\"/g, "'") + ',' + '0)' +' title="编辑" data-toggle="modal" data-target="#myModal" ><i class="mdi mdi-pencil">编辑</i></a>&nbsp';
+                            return '<a class="link" href="#!" >查看明细</a>&nbsp';
                         },
                     },
                 ],
@@ -2291,6 +2341,17 @@ JAVASCRIPTS
                 }
 
             })
+        }
+
+        function HexTo(value, row, index){
+           return ht(value)
+        }
+
+        function ht(value){
+            if(value !=null){
+                return parseInt(value.split(2,value.length-1), 16);
+            }
+           return ""
         }
     </script>
 

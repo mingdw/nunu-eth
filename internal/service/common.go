@@ -188,20 +188,8 @@ func (s *commonService) TransactionQuery(ctx context.Context, req *v1.Transactio
 	if err != nil {
 		return
 	}
-
-	count, err := client.TransactionCount(context.Background(), block.Hash())
-	if err != nil {
-		mapData["total"] = count
-	}
-	transactions, isPending, err := client.TransactionByHash(context.Background(), block.Hash())
-	if err != nil {
-		mapData["data"] = transactions
-		mapData["isPending"] = isPending
-	}
-
-	// v, _ := json.Marshal(header)
-	// jsonStr := string(v)
-	// log.Println("eth header info: ", jsonStr)
+	mapData["total"] = block.Transactions().Len()
+	mapData["data"] = block.Transactions()
 	return
 }
 
@@ -240,7 +228,9 @@ func (s *commonService) CreateAccount(ctx context.Context) (mapData map[string]i
 }
 
 func (s *commonService) TxQuery(ctx context.Context, txHash string) (mapData map[string]interface{}, err error) {
-	client, err := ethclient.Dial(getRealUrl(""))
+
+	url := getRealUrl("")
+	client, err := ethclient.Dial(url)
 	if err != nil {
 		return
 	}

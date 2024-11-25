@@ -62,7 +62,7 @@ func NewHTTPServer(
 
 		api.POST("/createAccount", commonHandler.CreateAccount)
 
-		api.POST("/txQuery/:txHash", commonHandler.TxQuery)
+		api.POST("/txQuery", commonHandler.TxQuery)
 
 	}
 	v1 := s.Group("/v1")
