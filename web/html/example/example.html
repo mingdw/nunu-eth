@@ -856,7 +856,28 @@ if err != nil {
                     <h2>11. 订阅新区块</h2>
 
                     <h2>12. 智能合约部署与执行</h2>
-                    <p>假设你已经通过各种工具部署了智能合约，那么可以通过以下示例快速执行智能合约代码</p>
+                    <p>部署智能合约的方式有多种多样，常用的用工具remix和通过ethrume加载字节码或者通过编译后的go文件智行部署程序（已经编译好abi和相关go文件）。目前我们通过使用生成的go文件部署合约</p>
+                </br>
+                    <p class="text-danger">目前可供部署的只有一个Store.go和erc20.go</p>
+                    <div class="card">
+                        <div class="card-body">
+                            <form id="contractForm" action="#">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">请选择合约: </label>
+                                    <div class="col-sm-10">
+                                        <select>
+                                            <option value="1">Store.go</option>
+                                            <option value="2">erc20.go</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div>
+
+                    </div>
 
                     <h2>16. 读取智能合约的字节码</h2>
 
