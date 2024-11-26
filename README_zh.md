@@ -250,3 +250,4 @@ func waitForReceipt(client *ethclient.Client, txHash common.Hash) (*types.Receip
 8. 等待部署完成 交易被确认后，合约将被部署到测试网。你可以在 Remix 的控制台中看到部署的详细信息，包括合约地址。
 9. 可以使用测试网的区块浏览器（[https://sepolia.etherscan.io/](https://sepolia.etherscan.io/)）来验证合约是否成功部署，只需搜索合约地址即可。
 10. 部署完成后，就可以在 Remix 的"Deployed Contracts"部分与合约进行交互，调用函数或发送交易。
+11. 常用水龙头领取地址如下：https://ethereum.org/zh/developers/docs/networks/
